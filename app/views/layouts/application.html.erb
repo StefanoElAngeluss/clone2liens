@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clone2liens</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script>document.write('<script src="http://127.0.0.1:3000' + (location.host || 'localhost').split(':')[0] + '127.0.0.1:35729"></' + 'script>')</script>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
