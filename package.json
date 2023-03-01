@@ -7,7 +7,8 @@
         "esbuild": "^0.17.10"
     },
     "scripts": {
-        "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
+        "build": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js",
+        "buildcss": "sass app/assets/stylesheets/application.scss:./app/assets/builds/app.css --load-path=node_modules"
     },
     "devDependencies": {
         "eslint": "^8.35.0",
@@ -18,3 +19,4 @@
         "prettier": "^2.8.4"
     }
 }
+

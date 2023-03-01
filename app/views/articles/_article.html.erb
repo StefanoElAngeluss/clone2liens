@@ -1,0 +1,30 @@
+<div id="<%= dom_id article %>">
+    <p>
+        <strong>Titre:</strong>
+        <%= article.titre %>
+    </p>
+
+
+    <% if user_signed_in? %>
+        <%= pluralize(article.likes.count, "Like") %><br />
+        <% like = current_user.likes.find_by(article: article) %>
+        <% if like.nil? %>
+            <%= button_to "J'aime", likes_path, params: { like: { article_id: article.id } }, method: :post %>
+        <% else %>
+            <p>
+                <%= button_to "Enlever mon j'aime", like_path(like), method: :delete %>
+            </p>
+        <% end %>
+    <% end %>
+
+    <p>
+        <strong>Vues:</strong>
+        <%#= pluralize(article.views, "vue") %>
+    </p>
+
+    <p>
+        <strong>Contenu:</strong>
+        <%= article.contenu %>
+    </p>
+
+</div>
