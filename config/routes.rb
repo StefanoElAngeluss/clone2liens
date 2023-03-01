@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+    devise_for :users
+    ########## PAGES ##########
+    root 'pages#accueil', to: 'pages#accueil'
+    get 'boutique', to: 'pages#boutique', as: 'boutique'
+    get 'contact', to: 'pages#contact', as: 'contact'
+    get 'a_propos', to: 'pages#about', as: 'about'
+    ########## ARTICLES ##########
+    resources :articles
+    resources :likes, only: %i[ create destroy ]
 end

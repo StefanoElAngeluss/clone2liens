@@ -1,11 +1,35 @@
 {
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "[javascript]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "editor.tabSize": 4
+    },
+    "[erb]": {
+        "editor.tabSize": 4
     },
     "editor.codeActionsOnSave": {
         "source.fixAll": true
-    }
+    },
+    "prettier.endOfLine": "crlf",
+    "files.eol": "\r\n",
+    "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
+    "prettier.tabWidth": 4,
+    "emmet.triggerExpansionOnTab": true,
+    "files.trimTrailingWhitespace": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "Clone 2 Liens",
+            "database": "clone2liens_development",
+            "username": "postgres"
+        }
+    ]
 }
+
