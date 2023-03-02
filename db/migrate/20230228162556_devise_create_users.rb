@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :rue,                null: false, default: ""
       t.string :code_postale,       null: false, default: ""
       t.string :ville,              null: false, default: ""
-      t.string :Pays,               null: false, default: ""
+      t.string :pays,               null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.integer :role, default: 0
 

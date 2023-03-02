@@ -4,13 +4,13 @@ class LikesController < ApplicationController
         if !@like.save
             flash[:alert] = "Vous avez déjà aimé cet article"
         end
-        redirect_to articles_path
+        redirect_to request.referer
     end
 
     def destroy
         @like = current_user.likes.find(params[:id])
         @like.destroy
-        redirect_to articles_path
+        redirect_to request.referer
     end
 
     def like_params

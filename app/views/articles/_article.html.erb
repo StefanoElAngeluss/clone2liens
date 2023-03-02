@@ -4,22 +4,20 @@
         <%= article.titre %>
     </p>
 
-
-    <% if user_signed_in? %>
-        <%= pluralize(article.likes.count, "Like") %><br />
-        <% like = current_user.likes.find_by(article: article) %>
-        <% if like.nil? %>
-            <%= button_to "J'aime", likes_path, params: { like: { article_id: article.id } }, method: :post %>
-        <% else %>
-            <p>
-                <%= button_to "Enlever mon j'aime", like_path(like), method: :delete %>
-            </p>
+    <p>
+        <% if user_signed_in? %>
+            <% like = current_user.likes.find_by(article: article) %>
+            <% if like.nil? %>
+                <%= button_to raw('<i class="fa-solid fa-thumbs-up fa-xl button_like"></i>'), likes_path, params: { like: { article_id: article.id } }, method: :post %>
+            <% else %>
+                <%= button_to raw('<i class="fa-solid fa-thumbs-down fa-xl button_unlike"></i>'), like_path(like), method: :delete %>
+            <% end %>
         <% end %>
-    <% end %>
+    </p>
 
     <p>
         <strong>Vues:</strong>
-        <%#= pluralize(article.views, "vue") %>
+        <%= pluralize(article.views, "vue") %>
     </p>
 
     <p>

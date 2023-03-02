@@ -1,0 +1,30 @@
+<ul class="navbar-nav me-4 ms-4">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Compte
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg-end mt-3" aria-labelledby="navbarDropdown">
+            <% if user_signed_in? %>
+                <div class="dropdown-header text-success text-center text-uppercase mb-2" style="font-weight: bold;background-color: #D3F3E3;">
+                Fonctionnalités Pages
+                </div>
+                <li><%= active_link_to 'Ajouter un nouvel article', new_article_path, class: "dropdown-item mb-2" %></li>
+                <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                Fonctionnalités Compte
+                </div>
+                <li><%= active_link_to "Mes infos", profile_path(current_user), class:"dropdown-item mb-1" %></li>
+                <li><%= active_link_to 'Editer mon compte', edit_user_registration_path, class: "dropdown-item  mb-2" %></li>
+                <div class="dropdown-header text-danger text-center text-uppercase mb-2" style="font-weight: bold;background-color: #F7D7D7;">
+                Déconnexion Compte
+                </div>
+                <li><%= button_to "Déconnexion", destroy_user_session_path, method: :delete, class:"dropdown-item link" %></li>
+            <% else %>
+                <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                Fonctionnalités Compte
+                </div>
+                <li><%= active_link_to 'Connexion', new_user_session_path, class: "dropdown-item  mb-2" %></li>
+                <li><%= active_link_to 'Créer un compte', new_user_registration_path, class: "dropdown-item  mb-2" %></li>
+            <% end %>
+        </ul>
+    </li>
+</ul>

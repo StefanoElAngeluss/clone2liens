@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user!, only: %i[index show ]
+    before_action :authenticate_user!, only: %i[ index show ]
     before_action :set_article, only: %i[ show edit update destroy ]
 
     # GET /articles or /articles.json
@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
     # ajouter les views au articles avec incrementation de 1
-    # @article.update(views: @article.views + 1)
+    @article.update(views: @article.views + 1)
   end
 
   # GET /articles/new
