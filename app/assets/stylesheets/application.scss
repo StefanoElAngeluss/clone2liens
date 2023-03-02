@@ -14,3 +14,20 @@
  *= require_self
  */
 
+[type='button'],
+[type='reset'],
+[type='submit'],
+.button_unlike {
+    border: none !important;
+    background-color: white !important;
+    color: red !important;
+}
+[type='button'],
+[type='reset'],
+[type='submit'],
+.button_like {
+    border: none !important;
+    background-color: white !important;
+    color: blue !important;
+}
+

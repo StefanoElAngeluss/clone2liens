@@ -1,0 +1,66 @@
+<% if current_user %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12" align="center">
+        <div class="card">
+          <div class="d-flex justify-content-center">
+            <%#= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
+          </div>
+          <h1><%= @user.username %></h1>
+          <div class="card-footer">
+            <div class="badge bg-warning text-dark">
+              <%#= pluralize(@user.comments.size, "Commentaire") %> |
+            </div>
+            <div class="badge bg-secondary badge-light">
+              <%= pluralize(@user.views, "Vue") %>
+            </div> |
+            <div class="badge bg-primary text-light">
+              <%= pluralize(@total_views, "Total Article Vue") %>
+            </div>
+          </div>
+          <%#= render "users/followability/follow_button", user: @user %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="container">
+    <div class="card mt-4">
+      <div class="card-header d-flex justify-content-between mb-4">
+        <h2 class="text-muted" style="margin: 0 80px;">Articles</h2>
+        <%# <h2 class="text-muted" style="margin: 0 100px;">Produits</h2> %>
+      </div>
+      <div class="d-flex justify-content-between me-5 mx-5">
+        <ul class="mb-4">
+          <li><b>Rue:</b> <%= @user.rue.titleize %></li>
+          <li><b>Ville:</b> <%= @user.ville.titleize %></li>
+          <li><b>Code Postale:</b> <%= @user.code_postale %></li>
+          <li><b>Pays:</b> <%= @user.pays.titleize %></li>
+        </ul>
+        <ul style="margin: 0 90px 0 0;">
+          <li><b>Article:</b> <%= @user.articles.count %></li>
+        </ul>
+        <ul style="margin: 0 60px 0 0;">
+          <li><b>Produit:</b> <%#= current_user.produit.count %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-header m-auto d-flex justify-content-between">
+      <div>
+        Votre rôle est -
+        <span class="text-danger text-capitalize" style="font-weight: bold;">
+          <%= @user.role %>
+        </span>
+      </div>
+      <div>
+        Votre Email -
+        <span class="text-primary text-capitalize" style="font-weight: bold;">
+          <%= @user.email %>
+        </span>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
