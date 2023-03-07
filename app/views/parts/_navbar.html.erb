@@ -1,19 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid mb-2 mt-2">
-    <a class="navbar-brand me-3 ms-3" href="#">Clone2liens</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <%= active_link_to 'Clone2liens', root_path, active: :exclusive, class: "nav-link" %>
+        </li>
+    </ul>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <%= link_to 'Accueil', root_path, class: "nav-link" %>
+            <%= active_link_to 'Articles', articles_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-            <%= link_to 'Article', articles_path, class: "nav-link" %>
+            <%= active_link_to 'Boutique', boutique_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+            <%= active_link_to 'Á propos de nous!', about_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to 'Contact', contact_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

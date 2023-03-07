@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.0"
+ruby "3.2.1"
 
 ########## GEMS BASE ##########
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
@@ -18,12 +18,13 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 ########## GEMS PESONNEL ##########
 gem "devise"
 gem "acts_as_votable"
 gem "active_link_to"
+gem "letter_opener"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
