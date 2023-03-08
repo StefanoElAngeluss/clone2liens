@@ -1,0 +1,30 @@
+<div class="comment-<%= commentaire.id %>"
+    style="border: 1px solid black; padding: 1em; margin: 1em;">
+    <%= commentaire.user.username %><br />
+    <% if (commentaire.updated_at - commentaire.created_at) > 1 %>
+        <span>Éditer le <%= time_ago_in_words(commentaire.updated_at) %></span>
+    <% else %>
+        <span>Poster le <%= time_ago_in_words(commentaire.created_at) %></span>
+    <% end %>
+    <% if current_user == commentaire.user %>
+    <div class="btn-group float-end">
+        <%= button_to "Éditer", nil, remote: true, class: "btn btn-warning",
+            data: {
+                controller: "commentaires",
+                action: "commentaires#toggleForm",
+                commentaires_form_param: "edit-form-#{commentaire.id}",
+                commentaires_contenu_param: "commentaire-contenu-#{commentaire.id}",
+            }
+        %>
+        <%= button_to "Supprimer", [article, commentaire], class: "btn btn-danger", method: :delete %>
+    </div>
+    <div id="edit-form-<%= commentaire.id %>" class="d-none">
+        <%= render "articles/commentaires/form",
+            article: @article,
+            commentaire: commentaire,
+            submit_label: "Mettre à jour" %>
+    </div>
+    <% end %>
+    <hr />
+    <%= commentaire.contenu %>
+</div>

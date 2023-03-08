@@ -10,27 +10,27 @@
 
     <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autocomplete: "email" %>
     </div>
 
     <div class="field">
         <%= f.label :rue %><br />
-        <%= f.text_field :rue, autofocus: true, autocomplete: "rue" %>
+        <%= f.text_field :rue, autocomplete: "rue" %>
     </div>
 
     <div class="field">
         <%= f.label :ville %><br />
-        <%= f.text_field :ville, autofocus: true, autocomplete: "ville" %>
+        <%= f.text_field :ville, autocomplete: "ville" %>
     </div>
 
     <div class="field">
         <%= f.label :code_postale %><br />
-        <%= f.text_field :code_postale, autofocus: true, autocomplete: "code_postale" %>
+        <%= f.text_field :code_postale, autocomplete: "code_postale" %>
     </div>
 
     <div class="field">
         <%= f.label :pays %><br />
-        <%= f.text_field :pays, autofocus: true, autocomplete: "pays" %>
+        <%= f.text_field :pays, autocomplete: "pays" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

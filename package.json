@@ -3,12 +3,13 @@
     "dependencies": {
         "@hotwired/stimulus": "^3.2.1",
         "@hotwired/turbo-rails": "^7.2.5",
-        "@rails/ujs": "^7.0.4-2",
-        "esbuild": "^0.17.10"
+        "@rails/actiontext": "^7.0.4-2",
+        "esbuild": "^0.17.10",
+        "trix": "^2.0.4"
     },
     "scripts": {
-        "build": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/app.js",
-        "buildcss": "sass app/assets/stylesheets/application.scss:./app/assets/builds/app.css --load-path=node_modules"
+        "build": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js",
+        "buildcss": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --load-path=node_modules"
     },
     "devDependencies": {
         "eslint": "^8.35.0",

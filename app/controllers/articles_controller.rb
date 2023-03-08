@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
   def show
     # ajouter les views au articles avec incrementation de 1
     @article.update(views: @article.views + 1)
+    @commentaires = @article.commentaires.order(created_at: :desc)
   end
 
   # GET /articles/new
