@@ -1,4 +1,5 @@
 <div class="container">
+<% if user_signed_in? %>
     <h1>New article</h1>
 
     <%= render "form", article: @article %>
@@ -8,4 +9,5 @@
     <div>
     <%= link_to "Back to articles", articles_path %>
     </div>
+<% end %>
 </div>

@@ -5,13 +5,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       ## Database authenticatable
       t.string :username,           null: false, default: ""
-      t.integer :role, default: 0
+      t.integer :role,              null: false, default: 0
       t.string :email,              null: false, default: ""
       t.string :rue,                null: false, default: ""
       t.string :code_postale,       null: false, default: ""
       t.string :ville,              null: false, default: ""
       t.string :pays,               null: false, default: ""
-      t.integer :users, :views, default: 0
+      t.integer :views,             null: false, default: 0
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -43,7 +43,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.timestamps null: false
     end
 
-    add_index :users, :username,             unique: true
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true

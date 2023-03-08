@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "build",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build",
+            "detail": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js",
+            "isBuildCommand": true,
+            "taskName": "build",
+            "args": ["run", "build"]
+        }
+    ]
+}
+

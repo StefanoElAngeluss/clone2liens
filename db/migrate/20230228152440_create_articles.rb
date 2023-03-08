@@ -3,7 +3,7 @@ class CreateArticles < ActiveRecord::Migration[7.0]
     create_table :articles do |t|
       t.string :titre
       t.text :contenu
-      t.integer :articles, :views, default: 0
+      t.integer :views, default: 0
 
       t.timestamps
     end

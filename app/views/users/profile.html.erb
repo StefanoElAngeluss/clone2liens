@@ -9,7 +9,7 @@
           <h1><%= @user.username %></h1>
           <div class="card-footer">
             <div class="badge bg-warning text-dark">
-              <%#= pluralize(@user.comments.size, "Commentaire") %> |
+              <%= pluralize(@user.commentaires.size, "Commentaire") %> |
             </div>
             <div class="badge bg-secondary badge-light">
               <%= pluralize(@user.views, "Vue") %>
@@ -38,6 +38,11 @@
           <li><b>Code Postale:</b> <%= @user.code_postale %></li>
           <li><b>Pays:</b> <%= @user.pays.titleize %></li>
           <li><b>Confirmation le:</b> <%= @user.confirmed_at %></li>
+          <li><b>Sign_in total:</b> <%= @user.sign_in_count %></li>
+          <li><b>courante connexion le:</b> <%= @user.current_sign_in_at %></li>
+          <li><b>derniere connexion le:</b> <%= @user.last_sign_in_at %></li>
+          <li><b>courrante ip de connexion:</b> <%= @user.current_sign_in_ip %></li>
+          <li><b>derniere ip connecter:</b> <%= @user.last_sign_in_ip %></li>
         </ul>
         <ul style="margin: 0 90px 0 0;">
           <li><b>Article:</b> <%= @user.articles.count %></li>

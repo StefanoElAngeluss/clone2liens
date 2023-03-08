@@ -8,9 +8,9 @@
         <% if user_signed_in? %>
             <% like = current_user.likes.find_by(article: article) %>
             <% if like.nil? %>
-                <%= button_to raw('<i class="fa-solid fa-thumbs-up fa-xl button_like"></i>'), likes_path, params: { like: { article_id: article.id } }, method: :post %>
+                <%= button_to raw('<i class="fa-solid fa-thumbs-up fa-xl button_like"></i>'), likes_path, params: { like: { article_id: article.id } }, method: :post, class:"buttonUP" %>
             <% else %>
-                <%= button_to raw('<i class="fa-solid fa-thumbs-down fa-xl button_unlike"></i>'), like_path(like), method: :delete %>
+                <%= button_to raw('<i class="fa-solid fa-thumbs-down fa-xl button_unlike"></i>'), like_path(like), method: :delete, class:"buttonDOWN" %>
             <% end %>
         <% end %>
     </p>
@@ -22,7 +22,7 @@
 
     <p>
         <strong>Contenu:</strong>
-        <%= article.contenu %>
+        <%= truncate(strip_tags(article.contenu.to_s), length: 60) %>
     </p>
 
 </div>

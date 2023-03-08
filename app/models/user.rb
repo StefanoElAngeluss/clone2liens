@@ -4,8 +4,9 @@ class User < ApplicationRecord
     devise  :database_authenticatable, :registerable, :confirmable, :lockable,
             :recoverable, :rememberable, :validatable
 
-    has_many :articles
+    has_many :articles, dependent: :destroy
     has_many :likes
+    has_many :commentaires, dependent: :destroy
 
     enum role: %i[utilisateur administrateur]
     after_initialize :set_default_role, if: :new_record?

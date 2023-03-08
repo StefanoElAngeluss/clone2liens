@@ -1,7 +1,8 @@
-import { Controller } from "@hotwired/stimulus"
+/* eslint-disable import/newline-after-import */
+import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  connect() {
-    this.element.textContent = "Hello World!"
-  }
+    connect() {
+        this.element.textContent = 'Hello World!'
+    }
 }

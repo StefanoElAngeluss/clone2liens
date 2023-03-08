@@ -1,3 +1,6 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-undef */
+/* eslint-disable import/newline-after-import */
 import { Application } from '@hotwired/stimulus'
 
 const application = Application.start()
