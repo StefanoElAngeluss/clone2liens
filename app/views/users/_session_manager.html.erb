@@ -17,7 +17,8 @@
                 <div class="dropdown-header text-danger text-center text-uppercase mb-2" style="font-weight: bold;background-color: #F7D7D7;">
                 Déconnexion Compte
                 </div>
-                <li><%= link_to "Déconnexion", destroy_user_session_path, "data-turbo-method": "delete", "data-turbo-confirm": "Êtes vous sure de vouloir vous déconnecter ?", class:"dropdown-item link" %></li>
+                <li><%= button_to "Déconnexion", destroy_user_session_path, method: :delete, class:"dropdown-item link" %>
+                    <%#= link_to "Déconnexion", destroy_user_session_path, "data-turbo-method": "delete", "data-turbo-confirm": "Êtes vous sure de vouloir vous déconnecter ?", class:"dropdown-item link" %></li>
             <% else %>
                 <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
                 Fonctionnalités Compte

@@ -1,3 +1,6 @@
-// Entry point for the build script in your package.json
+/* eslint-disable prettier/prettier */
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import '@hotwired/turbo-rails'
 import './controllers'
+// import 'trix'
+// import '@rails/actiontext'
