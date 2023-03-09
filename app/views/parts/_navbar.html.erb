@@ -43,7 +43,11 @@
         <button class="btn btn-success" type="submit">Recherche</button>
       </form>
 
-      <%= render 'users/session_manager' %>
+      <ul class="navbar-nav">
+        <%#= render "recherche/form" %>
+        <%= render "articles/notifications_commentaires/notifications" %>
+        <%= render 'users/session_manager' %>
+      </ul>
 
     </div>
   </div>

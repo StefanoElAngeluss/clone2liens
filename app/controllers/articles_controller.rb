@@ -12,6 +12,17 @@ class ArticlesController < ApplicationController
     # ajouter les views au articles avec incrementation de 1
     @article.update(views: @article.views + 1)
     @commentaires = @article.commentaires.order(created_at: :desc)
+
+    # if status === 1 || current_user.administrateur?
+    #   @article.update(views: @article.views + 1)
+    #   @comments = @article.comments.includes(:user, :rich_text_body).order(created_at: :desc)
+
+    #   ahoy.track 'Article vue', article_id: @article.id
+
+    mark_notifications_as_read
+    # else
+    #   redirect_to articles_path, notice: "L'article publier n'as pas encore été axcepter par l'admin !"
+    # end
   end
 
   # GET /articles/new
@@ -72,5 +83,12 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:titre, :contenu)
+    end
+
+    def mark_notifications_as_read
+        if current_user
+            notification_to_mark_as_read = @article.notifications_as_article.where(recipient: current_user)
+            notification_to_mark_as_read.update_all(read_at: Time.zone.now)
+        end
     end
 end

@@ -8,14 +8,15 @@
     <% end %>
     <% if current_user == commentaire.user %>
     <div class="btn-group float-end">
-        <%= button_to "Éditer", nil, remote: true, class: "btn btn-warning",
-            data: {
-                controller: "commentaires",
-                action: "commentaires#toggleForm",
-                commentaires_form_param: "edit-form-#{commentaire.id}",
-                commentaires_contenu_param: "commentaire-contenu-#{commentaire.id}",
-            }
-        %>
+    <%= link_to "Éditer", nil, remote: true, class: "btn btn-warning",
+        data: {
+            controller: "commentaires",
+            action: "commentaires#toggleForm",
+            commentaires_form_param: "edit-form-#{commentaire.id}",
+            commentaires_contenu_param: "commentaire-contenu-#{commentaire.id}",
+            commentaires_edit_param: "edit-button-#{commentaire.id}"
+        },
+        id: "edit-button-#{commentaire.id}" %>
         <%= button_to "Supprimer", [article, commentaire], class: "btn btn-danger", method: :delete %>
     </div>
     <div id="edit-form-<%= commentaire.id %>" class="d-none">
