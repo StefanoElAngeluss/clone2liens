@@ -26,6 +26,7 @@ gem "devise"
 gem "acts_as_votable"
 gem "active_link_to"
 gem "letter_opener"
+gem "noticed"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do

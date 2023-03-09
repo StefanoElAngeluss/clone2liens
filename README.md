@@ -9,9 +9,12 @@ Things you may want to cover:
 -   -   Bundler version 2.4.7
 
 -   -   Gems avec problèmes
--   mailcatcher ne s'installe pas.
 
--   Configuration
+*   mailcatcher ne s'installe pas.
+
+*   le bouton des commentaire ne toggle pas
+
+<!-- -   Configuration -->
 
 -   Database creation
 

@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :articles, dependent: :destroy
     has_many :likes
     has_many :commentaires, dependent: :destroy
+    has_many :notifications, as: :recipient, dependent: :destroy
 
     enum role: %i[utilisateur administrateur]
     after_initialize :set_default_role, if: :new_record?
