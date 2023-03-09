@@ -22,6 +22,13 @@ class User < ApplicationRecord
     end
     ########## FIN UTILISATEUR ##########
 
+    def self.ransackable_attributes(auth_object = nil)
+        %w[ username email ]
+    end
+    def self.ransackable_associations(auth_object = nil)
+        %w[ username email ]
+    end
+
     private
 
     def set_default_role

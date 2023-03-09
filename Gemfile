@@ -27,6 +27,7 @@ gem "acts_as_votable"
 gem "active_link_to"
 gem "letter_opener"
 gem "noticed"
+gem "ransack", :github => "activerecord-hackery/ransack", :branch => "main"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
