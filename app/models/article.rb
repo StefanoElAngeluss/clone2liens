@@ -7,6 +7,11 @@ class Article < ApplicationRecord
     has_many :likes
     has_many :commentaires, dependent: :destroy
 
+    #### Single image upload ####
+	# has_one_attached :image
+	#### Multiple images upload ####
+	has_one_attached :file, dependent: :destroy
+
     has_noticed_notifications model_name: "Notification"
     has_many :notifications, through: :user, dependent: :destroy
 

@@ -1,28 +1,53 @@
-<div id="<%= dom_id article %>">
-    <p>
-        <strong>Titre:</strong>
-        <%= article.titre %>
-    </p>
-
-    <p>
-        <% if user_signed_in? %>
-            <% like = current_user.likes.find_by(article: article) %>
-            <% if like.nil? %>
-                <%= button_to raw('<i class="fa-solid fa-thumbs-up fa-xl button_like"></i>'), likes_path, params: { like: { article_id: article.id } }, method: :post, class:"buttonUP" %>
+<div class="container">
+  <%# if article.status == "publier" || current_user.administrateur? %>
+    <div id="<%= dom_id article %>">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="card-header d-flex justify-content-between">
+          <h5 class="card-title"><%= article.titre %></h5>
+          <h6 class="me-auto badge bg-info rounded-pill text-dark" style="margin-top: 5px;margin-left:20px;">
+            <%#= article.category.name.capitalize %>
+          </h6>
+          <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue") %></h6>
+        </div>
+        <div class="row g-0">
+            <% if article.file.persisted? %>
+                <%= image_tag(url_for(article.file), style: "width:100%; height:250px;") %>
             <% else %>
-                <%= button_to raw('<i class="fa-solid fa-thumbs-down fa-xl button_unlike"></i>'), like_path(like), method: :delete, class:"buttonDOWN" %>
+                Pas d'image
             <% end %>
-        <% end %>
-    </p>
 
-    <p>
-        <strong>Vues:</strong>
-        <%= pluralize(article.views, "vue") %>
-    </p>
+          <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text">
+                  <%# if article.status === "archiver" %>
+                    <span class="badge bg-primary text-gray-dark rounded-pill">
+                      <%#= article.status %>
+                    </span>
+                  <%# elsif article.status === "brouillon" %>
+                    <span class="badge bg-secondary text-gray-dark rounded-pill">
+                      <%#= article.status %>
+                    </span>
+                  <%# else article.status === "publier" %>
+                    <span class="badge bg-success text-gray-dark rounded-pill">
+                      <%#= article.status %>
+                    </span>
+                  <%# end %>
+                  <%#= article.contenu %>
+                </p>
+              </div>
+          </div>
 
-    <p>
-        <strong>Contenu:</strong>
-        <%= truncate(strip_tags(article.contenu.to_s), length: 60) %>
-    </p>
-
+          <div class="card-footer">
+            <p class="card-text d-flex justify-content-around">
+              <small class="text-muted mt-1">Last updated 3 mins ago</small>
+              <small class="mt-1">
+                Posté par : <%= link_to article.user.username, profile_path(article.user), style:"text-decoration:none;font-weight: bold;color:green;" %>
+              </small>
+              <%= link_to "Voir cet article", article, class: "btn btn-sm btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%# end %>
 </div>
