@@ -1,0 +1,15 @@
+<% if article.file.attached? %>
+    <div class="row">
+        <% if article.file.image? %>
+            <div class="message-image-container">
+                <%= image_tag(article.file, class: "message-image") %>
+            </div>
+        <% elsif article.file.video? %>
+            <%= video_tag(url_for(article.file), class: "message-video", controls: "") %>
+        <% elsif article.file.audio? %>
+            <%= audio_tag(url_for(article.file), class: "message-audio", controls: "") %>
+        <% else %>
+            <%= link_to article.file.filename, url_for(article.file), class: "message-file" %>
+        <% end %>
+    </div>
+<% end %>

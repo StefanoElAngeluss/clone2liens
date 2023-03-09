@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :file, style: "display: block" %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div>
     <%= form.label :contenu, style: "display: block" %>
     <%= form.rich_text_area :contenu, class: "form-control" %>
   </div>
