@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
     # GET /articles or /articles.json
     def index
-        @articles = Article.all.order(created_at: :desc)
+        @articles = Article.order(created_at: :desc)
     end
 
   # GET /articles/1 or /articles/1.json

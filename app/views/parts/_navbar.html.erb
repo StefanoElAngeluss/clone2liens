@@ -33,18 +33,15 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
 
-      <form class="d-flex" style="width:320px;">
+      <%# <form class="d-flex" style="width:320px;">
         <input class="form-control" type="search" placeholder="Faites votre recherche ici" aria-label="Recherche">
         <button class="btn btn-success" type="submit">Recherche</button>
-      </form>
+      </form> %>
 
       <ul class="navbar-nav">
-        <%#= render "recherche/form" %>
+        <%= render "recherche/form" %>
         <%= render "articles/notifications_commentaires/notifications" %>
         <%= render 'users/session_manager' %>
       </ul>
