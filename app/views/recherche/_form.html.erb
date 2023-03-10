@@ -1,4 +1,4 @@
-<%= search_form_for(@query, url: recherche_path, method: :get, class: "d-flex") do |f| %>
+<%= search_form_for(@query, url: recherche_path, method: :get, class: "d-flex me-3 py-1") do |f| %>
 
     <%# # Search if the name field contains... %>
     <%#= f.label :name_cont %>
@@ -12,7 +12,7 @@
     <%#= f.label :name_or_description_or_email_or_articles_title_cont %>
     <%= f.search_field :titre_or_contenu_or_user_email_or_user_username_i_cont_any,
         placeholder: "Recherchez...",
-        class: "form-control me-2" %>
+        class: "form-control" %>
 
     <%= f.submit "Rechercher", class: "btn btn-success" %>
 <% end %>

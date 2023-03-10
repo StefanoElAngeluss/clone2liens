@@ -3,15 +3,14 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "build",
-            "group": "build",
+            "script": "buildcss",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": [],
-            "label": "npm: build",
-            "detail": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js",
-            "isBuildCommand": true,
-            "taskName": "build",
-            "args": ["run", "build"]
+            "label": "npm: buildcss",
+            "detail": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --load-path=node_modules"
         }
     ]
 }
-

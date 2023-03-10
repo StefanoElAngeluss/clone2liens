@@ -1,11 +1,11 @@
 <% if current_user %>
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown mt-1">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <span class="badge rounded-pill bg-danger">
-        <%= @unread.count >= 9 ? "9+" : @unread.count %> <i class="bi bi-suit-heart-fill"></i>
+        <%= pluralize(@unread.count >= 9 ? "9+" : @unread.count, " - Commentaire") %> <i class="bi bi-suit-heart-fill"></i>
       </span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-lg-end mt-3 bg-light" aria-labelledby="navbarDropdown">
+    <ul class="dropdown-menu dropdown-menu-lg-end mt-2 bg-light" aria-labelledby="navbarDropdown">
       <% @unread.each do |notification| %>
         <%= render '/articles/notifications_commentaires/notif', notification: notification %>
       <% end %>
