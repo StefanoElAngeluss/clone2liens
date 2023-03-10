@@ -32,6 +32,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    if current_user != @article.user
+        redirect_to articles_path, alert: "Vous n'êtes pas autoriser à modifier cet article!"
+    end
   end
 
   # POST /articles or /articles.json

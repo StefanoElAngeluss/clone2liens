@@ -4,7 +4,7 @@
       <div class="col-12" align="center">
         <div class="card">
           <div class="d-flex justify-content-center">
-            <%#= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
+            <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
           </div>
           <h1><%= @user.username %></h1>
           <div class="card-footer">
@@ -38,11 +38,11 @@
           <li><b>Code Postale:</b> <%= @user.code_postale %></li>
           <li><b>Pays:</b> <%= @user.pays.titleize %></li>
           <li><b>Confirmation le:</b> <%= @user.confirmed_at %></li>
-          <li><b>Sign_in total:</b> <%= @user.sign_in_count %></li>
-          <li><b>courante connexion le:</b> <%= @user.current_sign_in_at %></li>
-          <li><b>derniere connexion le:</b> <%= @user.last_sign_in_at %></li>
-          <li><b>courrante ip de connexion:</b> <%= @user.current_sign_in_ip %></li>
-          <li><b>derniere ip connecter:</b> <%= @user.last_sign_in_ip %></li>
+          <li><b>Total de connexion sur le site:</b> <%= @user.sign_in_count.size %></li>
+          <li><b>Connexion du jour:</b> <%= @user.current_sign_in_at.to_i %></li>
+          <li><b>dernière connexion le:</b> <%= @user.last_sign_in_at.to_i %></li>
+          <li><b>courrante ip de connexion:</b> <%= @user.current_sign_in_ip.to_i %></li>
+          <li><b>derniere ip connecter:</b> <%= @user.last_sign_in_ip.to_i %></li>
         </ul>
         <ul style="margin: 0 90px 0 0;">
           <li><b>Article:</b> <%= @user.articles.count %></li>

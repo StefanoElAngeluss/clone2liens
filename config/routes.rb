@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  get 'recherche', to: 'recherche#index'
+    ########## ADMINSTRATIONS ##########
+    authenticated :user, ->(user) { user.administrateur? } do
+        get 'administration', to: 'administration#index'
+        get 'administration/articles'
+        get 'administration/commantaires'
+        get 'administration/users'
+        get 'administration/show_article/:id', to: 'admin#show_article', as: 'administration_article'
+    end
+    ########## UTILISATEURS ##########
     get 'profile/:id', to: 'users#profile', as: 'profile'
     devise_for :users#, controllers: {
         # sessions: 'users/sessions'
@@ -13,5 +21,8 @@ Rails.application.routes.draw do
     resources :articles do
         resources :commentaires
     end
+    ########## LIKES ARTICLES ##########
     resources :likes, only: %i[ create destroy ]
+    ########## RECHERCHE ##########
+    get 'recherche', to: 'recherche#index'
 end

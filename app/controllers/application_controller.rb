@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
 		@query = Article.ransack(params[:q])
 	end
 
-    protected
-
-    def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email , :password, :password_confirmation])
-        devise_parameter_sanitizer.permit(:account_update, keys: %i[username rue ville code_postale pays])
-    end
-
     private
 
     def set_notifications
@@ -22,4 +14,18 @@ class ApplicationController < ActionController::Base
 		@unread = notifications.unread
 		@read = notifications.read
     end
+
+    protected
+
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_in, keys: %i[ login ])
+        devise_parameter_sanitizer.permit(:sign_up, keys: %i[
+                username
+                email
+                password
+                password_confirmation
+                avatar ])
+        devise_parameter_sanitizer.permit(:account_update, keys: %i[ username rue ville code_postale pays avatar ])
+    end
+
 end

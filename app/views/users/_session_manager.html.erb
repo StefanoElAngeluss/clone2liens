@@ -1,18 +1,26 @@
 <ul class="navbar-nav me-4 ms-4">
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown mt-1">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Compte
+            <% if user_signed_in? && current_user.avatar.present? %>
+                <%= image_tag(url_for(current_user.avatar_navbar), style: "border-radius:100%;") %>&nbsp;
+                <%= current_user.username %>
+            <% else %>
+                Compte
+            <% end %>
         </a>
-        <ul class="dropdown-menu dropdown-menu-lg-end mt-3" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu dropdown-menu-lg-end mt-2" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
                 <div class="dropdown-header text-success text-center text-uppercase mb-2" style="font-weight: bold;background-color: #D3F3E3;">
                 Fonctionnalités Pages
                 </div>
-                <li><%= active_link_to 'Ajouter un nouvel article', new_article_path, class: "dropdown-item mb-2" %></li>
+                <li><%= active_link_to 'Ajouter un nouvel article', new_article_path, class: "dropdown-item mb-2" if current_user.administrateur? %></li>
+                <li><%#= active_link_to "Nouvelle Catégorie", new_category_path, class:"dropdown-item mb-2" if current_user.administrateur? %></li>
+                <li><%#= active_link_to "Nouveau projet", new_projet_path, class:"dropdown-item mb-2" if current_user.administrateur? %></li>
                 <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
                 Fonctionnalités Compte
                 </div>
-                <li><%= active_link_to "Mes infos", profile_path(current_user), class:"dropdown-item mb-1" %></li>
+                <li><%= active_link_to "Administrateur", administration_path, class:"dropdown-item mb-2" if current_user.administrateur? %></li>
+                <li><%= active_link_to "Mes infos", profile_path(current_user), class:"dropdown-item mb-2" %></li>
                 <li><%= active_link_to 'Editer mon compte', edit_user_registration_path, class: "dropdown-item  mb-2" %></li>
                 <div class="dropdown-header text-danger text-center text-uppercase mb-2" style="font-weight: bold;background-color: #F7D7D7;">
                 Déconnexion Compte
