@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+    extend FriendlyId
     validates :titre, presence: true, length: {minimum: 5, maximum: 50}
     validates :contenu, presence: true
     belongs_to :user
@@ -6,6 +7,11 @@ class Article < ApplicationRecord
     has_rich_text :contenu
     has_many :likes
     has_many :commentaires, dependent: :destroy
+
+    friendly_id :titre, use: %i[ slugged finders history ]
+    def should_generate_new_friendly_id?
+        titre_changed? || slug.blank?
+    end
 
     #### Single image upload ####
 	# has_one_attached :image

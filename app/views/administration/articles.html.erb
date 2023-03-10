@@ -16,7 +16,7 @@
           <th scope="row"><%= article.id %></th>
           <td><%= link_to article.titre.truncate(15), administration_articles_path(article) %></td>
           <td><%= article.user.username %></td>
-          <td><%= pluralize(article.comments.count, "Commentaire") %></td>
+          <td><%= pluralize(article.commentaires.count, "Commentaire") %></td>
         </tr>
       <% end %>
     </tbody>
