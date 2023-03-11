@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_10_184112) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_11_151138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,8 +60,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_184112) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "slug"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "commentaires", force: :cascade do |t|
@@ -108,13 +116,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_184112) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
-    t.integer "role", default: 0
+    t.integer "role", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "rue", default: "", null: false
     t.string "code_postale", default: "", null: false
     t.string "ville", default: "", null: false
     t.string "pays", default: "", null: false
-    t.integer "views", default: 0
+    t.integer "views", default: 0, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -137,11 +145,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_184112) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
   add_foreign_key "commentaires", "articles"
   add_foreign_key "commentaires", "users"

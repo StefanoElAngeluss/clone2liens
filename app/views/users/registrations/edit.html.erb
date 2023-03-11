@@ -12,15 +12,16 @@
         <%= f.label :email %><br />
         <%= f.email_field :email, autocomplete: "email" %>
     </div>
+    <hr />
 
-    <div class="field">
+    <div class="field inline-block">
+        Votre image actuelle est:
         <% if resource.avatar.attached? %>
-            <%= image_tag(resource.avatar_thumbnail) if resource.avatar.attached? %>
-        <% end %>
+            <%= image_tag(resource.avatar_thumbnail, class:"rounded-pill", style:"height:100px;width:100px;" + "some extra text") if resource.avatar.attached? %>
+        <% end %><br />
+        <%= f.file_field :avatar %><br />
     </div>
-    <div class="field">
-        <%= f.file_field :avatar %>
-    </div>
+    <hr />
 
     <div class="field">
         <%= f.label :rue %><br />
@@ -72,6 +73,6 @@
 
 <h3>Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div>Ce site ne vous plaît pas ? <%= button_to "Supprimer mon compte!!", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 <%= link_to "Back", :back %>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :articles do
         resources :commentaires
     end
+    resources :categories
     ########## LIKES ARTICLES ##########
     resources :likes, only: %i[ create destroy ]
     ########## RECHERCHE ##########

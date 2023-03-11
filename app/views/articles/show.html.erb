@@ -7,7 +7,7 @@
                 <div class="d-flex d-inline">
                 <h4 class="card-title"><%= @article.titre %></h4>
                 <h6 class="me-auto badge bg-success rounded-pill text-light" style="margin-top: 5px;margin-left:20px;">
-                    <%#= @article.category.name.capitalize %></h6>
+                    <%= link_to @article.category.nom.capitalize, @article.category, class:"text-light", style:"text-decoration:none;" %></h6>
                 </div>
                 <small class="text-primary mt-1">
                 Posté par : <%= link_to @article.user.username, profile_path(@article.user), style:"text-decoration:none;text-transform: uppercase;font-weight: bold;" %>
