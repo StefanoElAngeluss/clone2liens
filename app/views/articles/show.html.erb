@@ -15,12 +15,7 @@
                 <h6 class="mt-1"><%= pluralize(@article.views, "vue") %></h6>
             </div>
             <div class="col g-0">
-                <% if @article.file.persisted? %>
-                    <%= image_tag(@article.file, class: "message-image", style: "width:100%;height:550px;") %>
-                <% else %>
-                    Pas d'image
-                    <img src="https://picsum.photos/seed/picsum/1205/300" alt="image">
-                <% end %>
+                <%= render "articles/files/fichiers", article: @article %>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
