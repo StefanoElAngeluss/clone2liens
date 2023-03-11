@@ -198,6 +198,7 @@ fr:
             default: '%d/%m/%Y'
             long: '%e %B %Y'
             short: '%e %b'
+            heure: '%Hh%Mmin:%Ss'
         month_names:
             -
             - janvier
@@ -370,12 +371,13 @@ fr:
             default: '%d %B %Y %Hh %Mmin %Ss'
             long: '%A %d %B %Y'
             short: '%d %b %Hh%M'
-            heure: '%Hh%M'
+            heure: '%Hh %Mmin %Ss'
         pm: pm
         time_zone:
             formats:
                 default: '%Z'
                 long: '%Z'
                 short: '%z'
+                heure: '%z'
             time_zones:
-                Africa/Abidjan: Africa/Abidjan
+                Europe/Paris: Europe/Paris

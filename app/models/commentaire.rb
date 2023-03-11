@@ -1,6 +1,6 @@
 class Commentaire < ApplicationRecord
   belongs_to :user
-  belongs_to :article
+  belongs_to :article, counter_cache: true
   has_rich_text :contenu
 
   after_create_commit :notify_recipient
