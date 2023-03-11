@@ -1,10 +1,16 @@
 class ArticlesController < ApplicationController
     before_action :authenticate_user!, only: %i[ index show ]
     before_action :set_article, only: %i[ show edit update destroy ]
+    before_action :set_cats
 
     # GET /articles or /articles.json
     def index
-        @articles = Article.order(created_at: :desc)
+        # if params[:category].blank?
+            @articles = Article.all.order(created_at: :desc)
+        # else
+        #     @articles = Article.where(category_id: category_id).order(created_at: :desc)
+        #     @category_id = Category.find_by(nom: params[:category_id])
+        # end
     end
 
   # GET /articles/1 or /articles/1.json
@@ -85,9 +91,13 @@ class ArticlesController < ApplicationController
       redirect_to @article, status: :moved_permanently if params[:id] != @article.slug
     end
 
+    def set_cats
+      @categories = Category.all.order(:nom)
+    end
+
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:titre, :contenu, :file)
+      params.require(:article).permit(:titre, :contenu, :file, :category_id)
     end
 
     def mark_notifications_as_read

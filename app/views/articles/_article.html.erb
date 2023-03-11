@@ -5,7 +5,7 @@
         <div class="card-header d-flex justify-content-between">
           <h5 class="card-title"><%= article.titre %></h5>
           <h6 class="me-auto badge bg-info rounded-pill text-dark" style="margin-top: 5px;margin-left:20px;">
-            <%#= article.category.name.capitalize %>
+            <%= article.category.nom.capitalize %>
           </h6>
           <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue") %></h6>
         </div>
@@ -39,7 +39,7 @@
 
           <div class="card-footer">
             <p class="card-text d-flex justify-content-around">
-              <small class="text-muted mt-1">Last updated 3 mins ago</small>
+              <small class="text-muted mt-1">Dernière mise à jour: <%= l(article.updated_at.to_date, format: :long) %></small>
               <small class="mt-1">
                 Posté par : <%= link_to article.user.username, profile_path(article.user), style:"text-decoration:none;font-weight: bold;color:green;" %>
               </small>

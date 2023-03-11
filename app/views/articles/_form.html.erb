@@ -22,6 +22,13 @@
   </div>
 
   <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category_id, Category.all.map{|c|[c.nom, c.id]}, prompt: "Selectionnez une Catégorie" %>
+    <%#= form.label :category, style: "display: block;" %>
+    <%#= form.select :category_id, options_for_select(@categories.collect { |c| [c.nom, c.id] }) %>
+  </div>
+
+  <div>
     <%= form.label :contenu, style: "display: block" %>
     <%= form.rich_text_area :contenu, class: "form-control" %>
   </div>
