@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
     # GET /articles or /articles.json
     def index
         # if params[:category].blank?
-            @articles = Article.all.order(created_at: :desc)
+            @articles = Article.includes(:user, :category, :file_attachment).all.order(created_at: :desc)
         # else
         #     @articles = Article.where(category_id: category_id).order(created_at: :desc)
         #     @category_id = Category.find_by(nom: params[:category_id])
@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   def show
     # ajouter les views au articles avec incrementation de 1
     @article.update(views: @article.views + 1)
-    @commentaires = @article.commentaires.order(created_at: :desc)
+    @commentaires = @article.commentaires.includes(:user, :rich_text_contenu).order(created_at: :desc)
 
     # if status === 1 || current_user.administrateur?
     #   @article.update(views: @article.views + 1)

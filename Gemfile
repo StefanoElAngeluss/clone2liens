@@ -29,6 +29,7 @@ gem "letter_opener"
 gem "noticed"
 gem "ransack", :github => "activerecord-hackery/ransack", :branch => "main"
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem "bullet"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do

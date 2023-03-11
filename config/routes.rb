@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     authenticated :user, ->(user) { user.administrateur? } do
         get 'administration', to: 'administration#index'
         get 'administration/articles'
-        get 'administration/commantaires'
+        get 'administration/commentaires'
         get 'administration/users'
         get 'administration/show_article/:id', to: 'admin#show_article', as: 'administration_article'
     end
