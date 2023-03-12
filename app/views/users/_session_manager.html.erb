@@ -1,9 +1,11 @@
 <ul class="navbar-nav me-4 ms-4">
     <li class="nav-item dropdown mt-1">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <% if user_signed_in? && current_user.avatar_url.present? %>
-                <%= image_tag(current_user.avatar_url, style:"width:40px; height: 40px; border-radius:100%; margin-top:20px;") %>
-                <%#= image_tag(url_for(current_user.avatar_navbar), style: "border-radius:100%;") %><!--&nbsp;-->
+            <% if user_signed_in? %>
+                <%= image_tag(url_for(current_user.avatar_navbar), style:"width:40px; height: 40px; border-radius:100%;") %><!--&nbsp;-->
+                <%#= current_user.username %>
+            <%# elsif current_user && @user.avatar_url.present? %>
+                <%#= image_tag(current_user.avatar_url, style:"width:40px; height: 40px; border-radius:100%; margin-top:20px;") %>
                 <%= current_user.username %>
             <% else %>
                 Compte

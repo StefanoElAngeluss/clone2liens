@@ -33,7 +33,10 @@
     <div class="card mt-4">
       <div class="card-header d-flex justify-content-between mb-4">
         <h2 class="text-muted" style="margin: 0 80px;">Articles</h2>
-        <%# <h2 class="text-muted" style="margin: 0 100px;">Produits</h2> %>
+        <h2><%= link_to "Completez vos informations d'achat",
+        @portal_session.url,
+        class:"btn btn-primary" unless @portal_session.nil? %></h2>
+        <h2 class="text-muted" style="margin: 0 100px;">Produits</h2>
       </div>
       <div class="d-flex justify-content-between me-5 mx-5">
         <ul class="mb-4">

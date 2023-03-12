@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    include SubscriptionConcern
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise  :database_authenticatable, :registerable, :confirmable,
@@ -10,9 +11,22 @@ class User < ApplicationRecord
     has_many :commentaires, dependent: :destroy
     has_many :notifications, as: :recipient, dependent: :destroy
 
+    ########## AVATAR ##########
     has_one_attached :avatar
     after_commit :add_default_avatar, on: %i[ create update ]
 
+    def avatar_thumbnail
+        if avatar.attached?
+            avatar.variant(resize_to_limit: [150, 150]).processed
+        else
+            "/default_profile.png"
+        end
+    end
+
+    def avatar_navbar
+        avatar.variant(resize_to_limit: [30, 30]).processed
+    end
+    ########## FIN AVATAR ##########
 
     ########## CONNEXION LOGIN ou EMAIL ##########
     enum role: %i[utilisateur administrateur]
@@ -23,10 +37,6 @@ class User < ApplicationRecord
         conditions = warden_condition.dup
         login = conditions.delete(:login)
         where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.strip.downcase }]).first
-    end
-
-    def set_default_role
-        self.role ||= :utilisateur
     end
     ########## FIN CONNEXION LOGIN ou EMAIL ##########
 
@@ -44,6 +54,22 @@ class User < ApplicationRecord
     end
     ########## FIN OMNIAUTH GOOGLE ##########
 
+    ########## STRIPE PAY ##########
+    pay_customer stripe_attributes: :stripe_attributes
+    def stripe_attributes(pay_customer)
+        {
+            address: {
+                city: pay_customer.owner.city,
+                country: pay_customer.owner.country,
+            },
+            metadata: {
+                pay_customer_id: pay_customer.id,
+                user_id: pay_customer.owner.id # id
+            }
+        }
+    end
+    ########## FIN STRIPE PAY ##########
+
     def self.ransackable_attributes(auth_object = nil)
         %w[ username email ]
     end
@@ -51,19 +77,11 @@ class User < ApplicationRecord
         %w[ username email ]
     end
 
-    def avatar_thumbnail
-        if avatar.attached?
-            avatar.variant(resize_to_limit: [150, 150]).processed
-        else
-            "/default_profile.png"
-        end
-    end
-
-    def avatar_navbar
-        avatar.variant(resize_to_limit: [30, 30]).processed
-    end
-
     private
+
+    def set_default_role
+        self.role ||= :utilisateur
+    end
 
     def add_default_avatar
         return if avatar.attached?

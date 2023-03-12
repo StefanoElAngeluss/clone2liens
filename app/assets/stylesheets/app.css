@@ -2,3 +2,23 @@ body {
     overflow-y: hidden !important; /* Hide vertical scrollbar */
     overflow-x: hidden !important; /* Hide horizontal scrollbar */
 }
+/* Bouton de j'aime des articles */
+.buttonUP {
+    border: none !important;
+    background-color: white !important;
+    color: red !important;
+}
+.buttonDOWN {
+    border: none !important;
+    background-color: white !important;
+    color: blue !important;
+}
+/* Bouton des Tags des articles */
+.tag {
+    background: #0045c6;
+    color: #fff;
+    padding: 0.3em;
+    margin: 0.2em;
+    border-radius: 0.3em;
+    display: inline-block;
+}

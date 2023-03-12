@@ -45,8 +45,9 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = Article.new(article_params.except(:tags))
     @article.user = current_user
+    create_or_delete_articles_tags(@article, params[:article][:tags])
 
     respond_to do |format|
       if @article.save
@@ -62,8 +63,9 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
     @article.user = current_user
+    create_or_delete_articles_tags(@article, params[:article][:tags])
     respond_to do |format|
-      if @article.update(article_params)
+      if @article.update(article_params.except(:tags))
         format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
         format.json { render :show, status: :ok, location: @article }
       else
@@ -84,7 +86,15 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    def create_or_delete_articles_tags(article, tags)
+        article.taggables.destroy_all
+        tags = tags.strip.split(",")
+        tags.each do |tag|
+            article.tags << Tag.find_or_create_by(name: tag)
+        end
+    end
+
     def set_article
       @article = Article.friendly.find(params[:id])
 
@@ -95,9 +105,8 @@ class ArticlesController < ApplicationController
       @categories = Category.all.order(:nom)
     end
 
-    # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:titre, :contenu, :file, :category_id)
+      params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags)
     end
 
     def mark_notifications_as_read

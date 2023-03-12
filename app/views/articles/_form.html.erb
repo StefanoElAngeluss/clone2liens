@@ -34,6 +34,11 @@
   </div>
 
   <div>
+    <%= form.label :tag, style: "display: block" %>
+    <%= form.text_field :tags, value: article.tags.map(&:name).join(", "), class: "form-control" %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

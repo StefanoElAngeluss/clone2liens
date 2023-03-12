@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'membres/dashboard'
+
     ########## ADMINSTRATIONS ##########
     authenticated :user, ->(user) { user.administrateur? } do
         get 'administration', to: 'administration#index'
@@ -23,8 +25,14 @@ Rails.application.routes.draw do
         resources :commentaires
     end
     resources :categories
+    resources :tags
     ########## LIKES ARTICLES ##########
     resources :likes, only: %i[ create destroy ]
     ########## RECHERCHE ##########
     get 'recherche', to: 'recherche#index'
+    ########## STRIPE PAY ##########
+    get 'checkout', to: 'checkouts#show'
+    get 'checkouts/success', to: 'checkouts#success'
+    get 'billing', to: 'billing#show'
+
 end

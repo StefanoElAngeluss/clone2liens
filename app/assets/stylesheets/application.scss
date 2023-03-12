@@ -13,14 +13,6 @@
  *= require_tree .
  *= require_self
  */
+@import './actiontext.css';
 @import './trix.css';
-.buttonUP {
-    border: none !important;
-    background-color: white !important;
-    color: red !important;
-}
-.buttonDOWN {
-    border: none !important;
-    background-color: white !important;
-    color: blue !important;
-}
+@import './app.css';
