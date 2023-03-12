@@ -4,7 +4,11 @@
       <div class="col-12" align="center">
         <div class="card">
           <div class="d-flex justify-content-center">
-            <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
+            <% if @user.avatar.attached? %>
+                <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
+            <% else %>
+                <%= image_tag(current_user.avatar_url, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") %>
+            <% end %>
           </div>
           <h1><%= @user.username %></h1>
           <div class="card-footer">

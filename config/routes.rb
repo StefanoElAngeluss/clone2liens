@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     end
     ########## UTILISATEURS ##########
     get 'profile/:id', to: 'users#profile', as: 'profile'
-    devise_for :users#, controllers: {
-        # sessions: 'users/sessions'
-    # }
+    devise_for :users, controllers: {
+        # sessions: 'users/sessions',
+        omniauth_callbacks: 'users/omniauth_callbacks'
+    }
     ########## PAGES ##########
     root 'pages#accueil', to: 'pages#accueil'
     get 'boutique', to: 'pages#boutique', as: 'boutique'

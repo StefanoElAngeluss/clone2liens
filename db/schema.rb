@@ -119,6 +119,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_180354) do
     t.string "username", default: "", null: false
     t.integer "role", default: 0, null: false
     t.string "email", default: "", null: false
+    t.string "uid"
+    t.string "provider"
+    t.string "avatar_url"
     t.string "rue", default: "", null: false
     t.string "code_postale", default: "", null: false
     t.string "ville", default: "", null: false
