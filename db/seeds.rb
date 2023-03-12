@@ -48,7 +48,7 @@ elapsed = Benchmark.measure do
         5.times do |y|
             art.commentaires.create(
                 contenu: "Commentaire #{y} Wafer roll bear claw liquorice tootsie",
-                user_id: User.second.id)
+                user_id: User.first.id)
         end
     end
     10.times do |u|
@@ -60,7 +60,7 @@ elapsed = Benchmark.measure do
         5.times do |y|
             art.commentaires.create(
                 contenu: "Commentaire #{y} Wafer roll bear claw liquorice tootsie",
-                user_id: User.first.id)
+                user_id: User.second.id)
         end
     end
 end

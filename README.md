@@ -8,11 +8,12 @@ Things you may want to cover:
 -   -   Ruby version 3.2.1
 -   -   Bundler version 2.4.7
 
--   -   Gems avec problèmes
+-   -   Gems avec problèmes.
 
 *   mailcatcher ne s'installe pas.
 
-*   le bouton des commentaire ne toggle pas
+*   le bouton des commentaire ne toggle pas.
+*   voir les images uploader et les images compte google.
 
 <!-- -   Configuration -->
 

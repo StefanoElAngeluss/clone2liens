@@ -30,6 +30,9 @@ gem "noticed"
 gem "ransack", :github => "activerecord-hackery/ransack", :branch => "main"
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem "bullet"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
