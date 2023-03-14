@@ -1,15 +1,22 @@
-<div class="container">
-    <h1 class="text-center">Adminstrateur</h1>
-    <%= render 'administration/utils/nav_links' %>
-    <table class="table table-dark table-striped">
-        <thead>
+<h1 class="text-center">Adminstrateur</h1>
+<%= render 'administration/utils/nav_links' %>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col" colspan="2">commentaires</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% @commentaires.each do |commentaire| %>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">commentaires</th>
+            <th scope="row"><%= commentaire.id %></th>
+            <td><%= commentaire.user.username %></td>
+            <td><%= commentaire.contenu %></td>
+            <td></td>
         </tr>
-        </thead>
-        <tbody>
+        <% end %>
 
-        </tbody>
-    </table>
-</div>
+    </tbody>
+</table>

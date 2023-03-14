@@ -1,38 +1,36 @@
-<div class="container">
-  <h1 class="text-center">Administrateur</h1>
-  <%= render "administration/utils/nav_links" %>
-  <div class="text-center mt-5">
+<h1 class="text-center">Administrateur</h1>
+<%= render "administration/utils/nav_links" %>
+<div class="text-center mt-5">
     <div class="btn-group">
-      <%= link_to "Editer", edit_article_path(@article), class:"btn btn-warning" %>
-      <%= button_to "Supprimer", @article, method: :delete, data: {confirm: "Êtes vous sûr de vouloir supprimer cet Article ?"}, class: "btn btn-danger" %>
+    <%= link_to "Editer", edit_article_path(@article), class:"btn btn-warning" %>
+    <%= button_to "Supprimer", @article, method: :delete, data: {confirm: "Êtes vous sûr de vouloir supprimer cet Article ?"}, class: "btn btn-danger" %>
     </div>
-  </div>
-  <%= area_chart @article.views_by_day, colors: ["#a00a"] %>
-  <div class="row mt-1">
+</div>
+<%= area_chart @article.views_by_day, colors: ["#a00a"] %>
+<div class="row mt-1">
     <p>
-      <strong>Titre:</strong> <%= @article.titre %>
+    <strong>Titre:</strong> <%= @article.titre %>
     </p>
-  </div>
-  <div class="row mt-1">
+</div>
+<div class="row mt-1">
     <p>
-      <strong>Vues:</strong> <%= @article.views %>
+    <strong>Vues:</strong> <%= @article.views %>
     </p>
-  </div>
-  <div class="row mt-1">
+</div>
+<div class="row mt-1">
     <p><strong>Auteur:</strong>
-      <%= "#{@article.user.email} | #{@article.user.full_name} | #{pluralize(@article.user.views, "Vue")}" %>
+    <%= "#{@article.user.email} | #{@article.user.full_name} | #{pluralize(@article.user.views, "Vue")}" %>
     </p>
-  </div>
-  <div class="row mt-1">
+</div>
+<div class="row mt-1">
     <strong>Contenu:</strong> <%= @article.contenu %>
-  </div>
-  <div class="row mt-1">
-    <strong><%= pluralize(@article.comments.count, "Commentaire") %>:</strong>
-    <% @article.comments.each do |comment| %>
-      <div class="row mt-1">
-        <%= comment.user.full_name %>
-        <%= comment.body %>
-      </div>
+</div>
+<div class="row mt-1">
+    <strong><%= pluralize(@article.commentaires.count, "Commentaire") %>:</strong>
+    <% @article.commentaires.each do |comment| %>
+    <div class="row mt-1">
+        <%= comment.user.username %>
+        <%= comment.contenu %>
+    </div>
     <% end %>
-  </div>
 </div>

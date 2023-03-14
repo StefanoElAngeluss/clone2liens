@@ -1,18 +1,3 @@
-<div class="container">
-    <h1>Pages#boutique</h1>
-    <p>Find me in app/views/pages/boutique.html.erb</p>
-    <%= link_to 'accueil', root_path %>
-    <%#= link_to 'partir en vacances', checkout_path, class: "btn btn-success" %>
-</div>
-
-<% if current_user %>
-    <%= link_to "Acheter ce magnifique voyage!", checkout_path(
-            line_items: ['price_1MkifTLzjEk1iOPbunwIzSQi'],
-            payment_mode: 'payment'
-    ), class:"btn btn-success" %>
-
-    <%= link_to "Subscribe To Me!", checkout_path(
-            line_items: ['price_1MkmzBLzjEk1iOPbAZlcuJfl'],
-            payment_mode: 'subscription'
-    ), class:"btn btn-success" %>
-<% end %>
+<h1>Pages#boutique</h1>
+<p>Find me in app/views/pages/boutique.html.erb</p>
+<%= link_to 'accueil', root_path %>

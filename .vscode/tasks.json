@@ -4,7 +4,10 @@
         {
             "type": "npm",
             "script": "buildcss",
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": [],
             "label": "npm: buildcss",
             "detail": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --load-path=node_modules"
@@ -12,10 +15,7 @@
         {
             "type": "npm",
             "script": "build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [],
             "label": "npm: build",
             "detail": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js"

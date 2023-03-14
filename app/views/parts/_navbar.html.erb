@@ -9,15 +9,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-1">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
             <%= active_link_to 'Articles', articles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= render "articles/categories/categories", categories: @nav_categories %>
         </li>
         <li class="nav-item">
             <%= active_link_to 'Boutique', boutique_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-            <%= active_link_to 'Membres', membres_dashboard_path, class: "nav-link" %>
+            <%= active_link_to 'Projets', projets_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
             <%= active_link_to 'Á propos de nous!', about_path, class: "nav-link" %>
@@ -25,17 +28,17 @@
         <li class="nav-item">
           <%= active_link_to 'Contact', contact_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
+        <%# <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
-          <ul class="dropdown-menu dropdown-menu-lg-end mt-2" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu dropdown-menu-lg-end mt-3" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> %>
       </ul>
 
       <%# <form class="d-flex" style="width:320px;">

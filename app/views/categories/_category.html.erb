@@ -1,12 +1,17 @@
 <div id="<%= dom_id category %>">
-    <h2>
-        <strong>Catégorie:</strong>
-        <%= category.nom %>
-    </h2>
-    <% category.articles.each do |art| %>
-        <p>
-            <span><%= art.titre %> | <%= link_to "Voir l'article", art %></span>
-        </p>
-    <% end %>
+    <p>
+        <% target = action_name.eql?("show") ? categories_path : category %>
+        <%= link_to category.nom.capitalize, target %>
+    </p>
 
+</div>
+
+<div class="row mb-4">
+    <div class="card-footer">
+        <div class="col-12">
+            <% category.articles.each do |art| %>
+                <%= link_to art.titre, article: art %>&nbsp; - &nbsp;
+            <% end %>
+        </div>
+    </div>
 </div>

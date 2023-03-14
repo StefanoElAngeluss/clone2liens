@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-  get 'membres/dashboard'
-
     ########## ADMINSTRATIONS ##########
-    authenticated :user, ->(user) { user.administrateur? } do
+    # authenticated :user, ->(user) { user.administrateur? } do
         get 'administration', to: 'administration#index'
         get 'administration/articles'
         get 'administration/commentaires'
         get 'administration/users'
         get 'administration/show_article/:id', to: 'admin#show_article', as: 'administration_article'
-    end
+    # end
     ########## UTILISATEURS ##########
     get 'profile/:id', to: 'users#profile', as: 'profile'
     devise_for :users, controllers: {
@@ -30,9 +28,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[ create destroy ]
     ########## RECHERCHE ##########
     get 'recherche', to: 'recherche#index'
-    ########## STRIPE PAY ##########
-    get 'checkout', to: 'checkouts#show'
-    get 'checkouts/success', to: 'checkouts#success'
-    get 'billing', to: 'billing#show'
+    ########## PROJETS ##########
+    resources :projets
 
 end

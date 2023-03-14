@@ -5,7 +5,7 @@
 		<thead>
 			<tr>
 				<th><%= sort_link(@query, :titre, "Titre", default_order: :asc) %></th>
-				<th><%#= sort_link(@query, :category_name, "Catégories") %></th>
+				<th><%= sort_link(@query, :category_name, "Catégories") %></th>
 				<th><%= sort_link(@query, :contenu, "Contenu de l'article") %></th>
 				<th><%= sort_link(@query, :username, "Utilisateurs") %></th>
 			</tr>
@@ -14,7 +14,7 @@
 			<% @articles.each do |art| %>
 				<tr>
 					<td><%= link_to art.titre, art %></td>
-					<td><%#= link_to art.category.name, art.category %></td>
+					<td><%= link_to art.category.nom, art.category %></td>
 					<td><%= truncate(strip_tags(art.contenu.to_s), length: 50) %></td>
 					<td><%= link_to art.user.username, profile_path(art.user) %></td>
 				</tr>
