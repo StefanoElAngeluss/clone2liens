@@ -1,5 +1,5 @@
 <% if current_user %>
-  <li class="nav-item dropdown mt-1">
+  <li class="nav-item dropdown mt-2">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <span class="badge rounded-pill bg-danger">
         <%= pluralize(@unread.count >= 9 ? "9+" : @unread.count, " - Commentaire") %> <i class="bi bi-suit-heart-fill"></i>

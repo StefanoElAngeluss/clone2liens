@@ -1,0 +1,51 @@
+<div id="<%= dom_id @projet %>">
+    <div class="row">
+    <hr />
+
+        <div class="card" style="border:none;">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col mt-2">
+                        <h2>
+                            <%= @projet.titre %>
+                        </h2>
+                    </div>
+                    <div class="col mt-2 d-flex justify-content-center">
+                        <div class="display-inline me-3">
+                            <%= link_to "Retour aux projets", projets_path, class:"btn btn-sm btn-primary" %>
+                        </div>
+                        <div class="display-inline me-3">
+                            <%= link_to "Edit this projet", edit_projet_path(@projet), class:"btn btn-sm btn-warning" if current_user.administrateur? %>
+                        </div>
+                        <div class="display-inline">
+                            <%= button_to "Destroy this projet", @projet, method: :delete, data: { "turbo-method": :delete, "turbo-confirm": "Êtes vous sûr de vouloir supprimer cet Article ?" }, class:"btn btn-sm btn-danger" if current_user.administrateur? %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col mt-3">
+                    <b>Lien -</b>
+                    <%= link_to @projet.lien, @projet.lien %>
+                </div>
+            </div>
+
+            <div class="card-text">
+                <div class="col-12">
+                    <%= @projet.contenu %>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
+
+<%# <p style="color: green"><%= notice </p> %>
+
+<%#= render @projet %>
+
+<%# <div> %>
+  <%# = link_to "Edit this projet", edit_projet_path(@projet) | %>
+  <%#= link_to "Back to projets", projets_path %>
+
+  <%#= button_to "Destroy this projet", @projet, method: :delete %>
+<%# </div> %>

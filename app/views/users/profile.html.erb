@@ -1,65 +1,66 @@
 <% if current_user %>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-12" align="center">
-        <div class="card">
-          <div class="d-flex justify-content-center">
-            <% if @user.avatar.attached? %>
-                <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
-            <% else %>
-                <%= image_tag(current_user.avatar_url, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") %>
-            <% end %>
-          </div>
-          <h1><%= @user.username %></h1>
-          <div class="card-footer">
-            <div class="badge bg-warning text-dark">
-              <%= pluralize(@user.commentaires.size, "Commentaire") %> |
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-12" align="center">
+                <div class="card">
+                <div class="d-flex justify-content-center">
+                    <% if @user.avatar.attached? %>
+                        <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") if @user.avatar.attached? %>
+                    <% else %>
+                        <%= image_tag(current_user.avatar_url, style:"width:150px; height: 150px; border-radius:100%; margin-top:20px;") %>
+                    <% end %>
+                </div>
+                <h1><%= @user.username %></h1>
+                <div class="card-footer">
+                    <div class="badge bg-warning text-dark">
+                    <%= pluralize(@user.commentaires.size, "Commentaire") %> |
+                    </div>
+                    <div class="badge bg-secondary badge-light">
+                    <%= pluralize(@user.views, "Vue") %>
+                    </div> |
+                    <div class="badge bg-primary text-light">
+                    <%= pluralize(@total_views, "Total Article Vue") %>
+                    </div>
+                </div>
+                <%#= render "users/followability/follow_button", user: @user %>
+                </div>
             </div>
-            <div class="badge bg-secondary badge-light">
-              <%= pluralize(@user.views, "Vue") %>
-            </div> |
-            <div class="badge bg-primary text-light">
-              <%= pluralize(@total_views, "Total Article Vue") %>
-            </div>
-          </div>
-          <%#= render "users/followability/follow_button", user: @user %>
         </div>
-      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 
-  <div class="container">
-    <div class="card mt-4">
-      <div class="card-header d-flex justify-content-between mb-4">
-        <h2 class="text-muted" style="margin: 0 80px;">Articles</h2>
-        <h2><%= link_to "Completez vos informations d'achat",
-        @portal_session.url,
-        class:"btn btn-primary" unless @portal_session.nil? %></h2>
-        <h2 class="text-muted" style="margin: 0 100px;">Produits</h2>
-      </div>
-      <div class="d-flex justify-content-between me-5 mx-5">
-        <ul class="mb-4">
-          <li><b>Rue:</b> <%= @user.rue.titleize %></li>
-          <li><b>Ville:</b> <%= @user.ville.titleize %></li>
-          <li><b>Code Postale:</b> <%= @user.code_postale %></li>
-          <li><b>Pays:</b> <%= @user.pays.titleize %></li>
-          <li><b>Confirmation le:</b> <%= @user.confirmed_at %></li>
-          <li><b>Total de connexion sur le site:</b> <%= @user.sign_in_count.size %></li>
-          <li><b>Connexion du jour:</b> <%= @user.current_sign_in_at.to_i %></li>
-          <li><b>dernière connexion le:</b> <%= @user.last_sign_in_at.to_i %></li>
-          <li><b>courrante ip de connexion:</b> <%= @user.current_sign_in_ip.to_i %></li>
-          <li><b>derniere ip connecter:</b> <%= @user.last_sign_in_ip.to_i %></li>
-        </ul>
-        <ul style="margin: 0 90px 0 0;">
-          <li><b>Article:</b> <%= @user.articles.count %></li>
-        </ul>
-        <ul style="margin: 0 60px 0 0;">
-          <li><b>Produit:</b> <%#= current_user.produit.count %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-header m-auto d-flex justify-content-between">
+        <div class="card mt-4">
+            <%# HEADER CARD %>
+            <div class="card-header d-flex justify-content-between mb-4">
+                <h2 class="text-muted">Adresse</h2>
+                <h2 class="text-muted">Bouton</h2>
+                <%# Bouton de nos infos achat en ligne %>
+
+                <h2 class="text-muted">Produits</h2>
+            </div>
+
+            <div class="card-text d-flex justify-content-between">
+                <ul class="mb-4">
+                <li><b>Rue:</b> <%= @user.rue.titleize %></li>
+                <li><b>Ville:</b> <%= @user.ville.titleize %></li>
+                <li><b>Code Postale:</b> <%= @user.code_postale %></li>
+                <li><b>Pays:</b> <%= @user.pays.titleize %></li>
+                <li><b>Confirmation le:</b> <%= @user.confirmed_at %></li>
+                <li><b>Total de connexion sur le site:</b> <%= @user.sign_in_count.size %></li>
+                <li><b>Connexion du jour:</b> <%= @user.current_sign_in_at.to_i %></li>
+                <li><b>dernière connexion le:</b> <%= @user.last_sign_in_at.to_i %></li>
+                <li><b>courrante ip de connexion:</b> <%= @user.current_sign_in_ip.to_i %></li>
+                <li><b>derniere ip connecter:</b> <%= @user.last_sign_in_ip.to_i %></li>
+                <li><b>Article:</b> <%= @user.articles.count %></li>
+                </ul>
+                <ul style="margin: 0 60px 0 0;">
+                <li><b>Produit:</b> <%#= current_user.produit.count %></li>
+                </ul>
+            </div>
+        </div>
+
+    <%# FOOTER CARD %>
+    <div class="card-footer m-auto d-flex justify-content-between">
       <div>
         Votre rôle est -
         <span class="text-danger text-capitalize" style="font-weight: bold;">
@@ -74,6 +75,7 @@
       </div>
       </div>
     </div>
-  </div>
+
+</div>
 
 <% end %>

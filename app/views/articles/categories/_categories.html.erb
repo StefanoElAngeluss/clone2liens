@@ -1,0 +1,12 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Categories
+  </a>
+  <ul class="dropdown-menu dropdown-menu-lg-end mt-3" aria-labelledby="navbarDropdown">
+    <% categories.each do |cat| %>
+      <li><%= active_link_to cat.nom, cat, class: "dropdown-item" %></li>
+    <% end %>
+    <li><hr class="dropdown-divider"></li>
+    <li><%= active_link_to "Voir tout...", categories_path, active: :exclusive, class: "dropdown-item" %></li>
+  </ul>
+</li>

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-    include SubscriptionConcern
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise  :database_authenticatable, :registerable, :confirmable,
@@ -55,19 +54,6 @@ class User < ApplicationRecord
     ########## FIN OMNIAUTH GOOGLE ##########
 
     ########## STRIPE PAY ##########
-    pay_customer stripe_attributes: :stripe_attributes
-    def stripe_attributes(pay_customer)
-        {
-            address: {
-                city: pay_customer.owner.city,
-                country: pay_customer.owner.country,
-            },
-            metadata: {
-                pay_customer_id: pay_customer.id,
-                user_id: pay_customer.owner.id # id
-            }
-        }
-    end
     ########## FIN STRIPE PAY ##########
 
     def self.ransackable_attributes(auth_object = nil)

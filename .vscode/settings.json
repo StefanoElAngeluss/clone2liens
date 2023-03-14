@@ -10,6 +10,12 @@
     "[erb]": {
         "editor.tabSize": 4
     },
+    "[html]": {
+        "editor.tabSize": 4
+    },
+    "[css]": {
+        "editor.tabSize": 4
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
@@ -17,7 +23,6 @@
     "files.eol": "\r\n",
     "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
     "prettier.tabWidth": 4,
-    "emmet.triggerExpansionOnTab": true,
     "files.trimTrailingWhitespace": true,
     "sqltools.connections": [
         {
@@ -30,6 +35,7 @@
             "database": "clone2liens_development",
             "username": "postgres"
         }
-    ]
+    ],
+    "html-css-class-completion.enableEmmetSupport": false,
+    "emmet.triggerExpansionOnTab": true
 }
-

@@ -11,9 +11,9 @@ Things you may want to cover:
 -   -   Gems avec problèmes.
 
 *   mailcatcher ne s'installe pas.
-
-*   le bouton des commentaire ne toggle pas.
-*   voir les images uploader et les images compte google.
+*   le bouton des commentaire ne toggle passur cancel.
+*   voir les images uploader et les images compte google dans la navbar et dans profile.
+*   Voir le N+1 Query avec bullet et le régler.
 
 <!-- -   Configuration -->
 

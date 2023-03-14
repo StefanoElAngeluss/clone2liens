@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <title>Clone2liens</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>Clone2liens</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <%= render "parts/assets" %>
-  </head>
+        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+        <%= render "parts/assets" %>
+    </head>
 
-  <body>
+    <body>
 
-  <header>
-    <%= render 'parts/navbar' %>
-  </header>
+        <header>
+            <%= render 'parts/navbar' %>
+        </header>
 
-  <main>
-    <%= render "parts/alerts" %>
-    <%= yield %>
-  </main>
+        <main>
+            <%= render "parts/alerts" %>
 
-  </body>
+            <div class="container">
+                <%= yield %>
+            </div>
+        </main>
+
+    </body>
 </html>

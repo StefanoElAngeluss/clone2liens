@@ -1,0 +1,49 @@
+<div id="<%= dom_id projet %>">
+    <div class="row">
+    <hr />
+
+        <div class="card" style="border:none;">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm">
+                        <h2>
+                            <%= link_to projet.titre, projet, style:"text-decoration:none;" %>
+                        </h2>
+                    </div>
+                    <div class="col-sm mt-3">
+                        <%= link_to projet.lien, projet.lien %>
+                    </div>
+                    <div class="col-sm mt-2">
+                        <div style="float:right;">
+                            <%= link_to "Show this projet", projet, class:"btn btn-primary" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-text">
+                <div class="col-12">
+                    <%= truncate(strip_tags(projet.contenu.to_s), legnth: 50) %>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
+
+  <!--<p>
+    <strong>Titre:</strong>
+    <%= projet.titre %>
+  </p>
+
+  <p>
+    <strong>Lien:</strong>
+    <%= projet.lien %>
+  </p>
+
+  <p>
+    <strong>Contenu:</strong>
+    <%= truncate(strip_tags(projet.contenu.to_s), length: 50) %>
+  </p>
+
+</div>-->

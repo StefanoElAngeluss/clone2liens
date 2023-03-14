@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1 class="text-center" style="color:#6c757d;">Découverte de Projets des internautes</h1>
+    </div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis nihil, praesentium, nemo cumque nisi commodi obcaecati</p>
+    <p>aliquid reiciendis dolorum recusandae suscipit minima nesciunt rem veniam quae. Quam dolore illo qui.</p>
+    <div id="projets">
+        <% @projets.each do |projet| %>
+            <%= render projet %>
+        <% end %>
+    </div>
+</div>
