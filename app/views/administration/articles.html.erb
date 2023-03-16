@@ -1,5 +1,8 @@
 <h1 class="text-center">Adminstrateur</h1>
 <%= render 'administration/utils/nav_links' %>
+<%#= line_chart Article.group(:updated_at).group_by_week(:created_at).count %>
+<%#= pie_chart Article.group(:created_at).count %>
+<%= line_chart Article.group_by_day(:created_at).count %>
 <table class="table table-dark table-striped">
     <thead>
         <tr>

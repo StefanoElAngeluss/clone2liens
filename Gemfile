@@ -18,7 +18,6 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
-gem "sass"
 gem "image_processing", "~> 1.2"
 
 ########## GEMS PESONNEL ##########
@@ -26,6 +25,7 @@ gem "devise"
 gem "acts_as_votable"
 gem "active_link_to"
 gem "letter_opener"
+gem "sass"
 gem "noticed"
 gem "ransack", :github => "activerecord-hackery/ransack", :branch => "main"
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
@@ -34,6 +34,8 @@ gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "followability"
+gem 'chartkick', '~> 5.0', '>= 5.0.1'
+gem "groupdate"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
