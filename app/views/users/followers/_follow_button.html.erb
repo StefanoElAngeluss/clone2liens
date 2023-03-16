@@ -1,0 +1,9 @@
+<% if following?(@user) %>
+    <%= button_to "Ne pas suivre cet utilisateur", profile_unfollow_path(id: @user.id), method: :delete, class: "btn btn-sm btn-danger" %>
+<% else %>
+    <%= button_to raw("Suivre cet utilisateur &nbsp;<i class=\"fas fa-user\"></i>"),
+          profile_follow_path(id: @user.id), "data-turbo-method": :post,
+          class: "btn btn-sm btn-success" %>
+    <%#= button_to "Suivre cet utilisateur", profile_follow_path(id: @user.id), "data-turbo-method": :post, class: "btn btn-sm btn-success fas fa-download" %>
+    <%# <i class="fas fa-download"></i> %>
+<% end %>

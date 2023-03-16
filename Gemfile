@@ -33,8 +33,7 @@ gem "bullet"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
-gem "stripe"
-gem "pay"
+gem "followability"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
