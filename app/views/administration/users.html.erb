@@ -1,5 +1,6 @@
 <h1 class="text-center">Adminstrateur</h1>
 <%= render 'administration/utils/nav_links' %>
+<%= line_chart User.group_by_day(:created_at).count %>
 <table class="table table-dark table-striped">
     <thead>
     <tr>
@@ -34,7 +35,7 @@
             <%= l(user.created_at.to_date, format: :long) %>
         </td>
         <td>
-            <%= user.confirmed_at %>
+            <%= l(user.confirmed_at, format: :long) %> à <%= l(user.confirmed_at, format: :heure) %>
         </td>
         </tr>
     <% end %>
