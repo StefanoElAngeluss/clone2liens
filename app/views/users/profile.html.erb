@@ -22,7 +22,7 @@
                     <%= pluralize(@total_views, "Total Article Vue") %>
                     </div>
                 </div>
-                <%#= render "users/followability/follow_button", user: @user %>
+
                 </div>
             </div>
         </div>
@@ -33,7 +33,12 @@
             <%# HEADER CARD %>
             <div class="card-header d-flex justify-content-between mb-4">
                 <h2 class="text-muted">Adresse</h2>
-                <h2 class="text-muted">Bouton</h2>
+                <%# <h2 class="text-muted">Bouton</h2> %>
+                <h2><% if @user == current_user %>
+                    <%= link_to "Editer mon compte", edit_registration_path(@user), class: "btn btn-sm btn-secondary rounded-9" %>
+                <% elsif current_user %>
+                    <%= render "users/followers/follow_button", user: @user %>
+                <% end %></h2>
                 <%# Bouton de nos infos achat en ligne %>
 
                 <h2 class="text-muted">Produits</h2>
@@ -61,19 +66,22 @@
 
     <%# FOOTER CARD %>
     <div class="card-footer m-auto d-flex justify-content-between">
-      <div>
-        Votre rôle est -
-        <span class="text-danger text-capitalize" style="font-weight: bold;">
-          <%= @user.role %>
-        </span>
-      </div>
-      <div>
-        Votre Email -
-        <span class="text-primary" style="font-weight: bold;">
-          <%= @user.email %>
-        </span>
-      </div>
-      </div>
+        <div>
+            Rôle -
+            <span class="text-danger text-capitalize" style="font-weight: bold;">
+            <%= @user.role %>
+            </span>
+        </div>
+        <div>
+            <%= render "users/followers/follower_count", user: @user %> &nbsp; - &nbsp;
+            <%= @user.followees.count %> abonnements
+        </div>
+        <div>
+            Email -
+            <span class="text-primary" style="font-weight: bold;">
+                <%= @user.email %>
+            </span>
+        </div>
     </div>
 
 </div>

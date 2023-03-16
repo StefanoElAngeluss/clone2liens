@@ -198,7 +198,7 @@ fr:
             default: '%d/%m/%Y'
             long: '%e %B %Y'
             short: '%e %b'
-            heure: '%Hh%Mmin:%Ss'
+            heure: '%Hh%M'
         month_names:
             -
             - janvier

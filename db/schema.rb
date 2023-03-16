@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_12_234023) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_194042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_234023) do
     t.index ["user_id"], name: "index_commentaires_on_user_id"
   end
 
+  create_table "followability_relationships", force: :cascade do |t|
+    t.string "followerable_type", null: false
+    t.bigint "followerable_id", null: false
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_type", "followable_id"], name: "index_followability_relationships_on_followable"
+    t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -119,6 +131,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_234023) do
   create_table "projets", force: :cascade do |t|
     t.string "titre"
     t.string "lien"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,17 +7,35 @@
         <th scope="col">Username</th>
         <th scope="col">Role:</th>
         <th scope="col">Email</th>
+        <th scope="col">Le suivis des utilisateurs</th>
+        <th scope="col">Les utilisateurs qui se suivent</th>
         <th scope="col">Créer le:</th>
+        <th scope="col">Confirmer le:</th>
     </tr>
     </thead>
     <tbody>
     <% @users.each do |user| %>
         <tr>
         <th scope="row"><%= user.id %></th>
-        <td><%= user.username %></td>
-        <td class="text-capitalize"><%= user.role %></td>
+        <td><%= link_to user.username, profile_path(user), style:"color:#24eb01;text-decoration:none;" %></td>
+        <td class="text-capitalize" style="color:#eac58c;text-decoration:none;"><%= user.role %></td>
         <td><%= user.email %></td>
-        <td><%= l(user.created_at.to_date, format: :long) %> à <%= l(user.created_at.to_date, format: :heure) %></td>
+        <td>
+            <% user.followees.each do |u| %>
+                <%= u.username %>
+            <% end %>
+        </td>
+        <td>
+            <% user.followers.each do |u| %>
+                <%= u.username %>,
+            <% end %>
+        </td>
+        <td>
+            <%= l(user.created_at.to_date, format: :long) %>
+        </td>
+        <td>
+            <%= user.confirmed_at %>
+        </td>
         </tr>
     <% end %>
     </tbody>
