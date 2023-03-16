@@ -1,0 +1,11 @@
+<div class="d-flex">
+    <h1>Panier</h1>
+    <span class="mt-3 mx-5">Vous pouvez <a href="<%= url_for(@cart) %>">voir votre panier</a>.</span>
+</div>
+
+<% if @cart.orderables.count > 0 %>
+    <%= render "cart/orderables" %>
+    <p>Total: <%= @cart.total %></p>
+<% else %>
+    <p>Votre panier est vide.</p>
+<% end %>

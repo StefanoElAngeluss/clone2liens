@@ -18,14 +18,6 @@ Rails.application.routes.draw do
     # suivre l'utilisateur
     post 'profile/follow', to: 'users#follow'
     delete 'profile/unfollow', to: 'users#unfollow'
-    # ne pas suivre l'utilisateur
-    # post 'unfollow/:id', to: 'users#unfollow', as: 'unfollow'
-    # accept l'invitation l'invitation de l'utilisateur
-    # post 'accept/:id', to: 'users#accept', as: 'accept'
-    # annule l'invitation de l'utilisateur
-    # post 'decline/:id', to: 'users#decline', as: 'decline'
-    # supprimer l'invitation de l'utilisateur
-    # post 'cancel/:id', to: 'users#cancel', as: 'cancel'
     ########## PAGES ##########
     root 'pages#accueil', to: 'pages#accueil'
     get 'boutique', to: 'pages#boutique', as: 'boutique'
@@ -43,5 +35,9 @@ Rails.application.routes.draw do
     get 'recherche', to: 'recherche#index'
     ########## PROJETS ##########
     resources :projets
-
+    ########## PRODUITS ##########
+    get 'cart', to: 'cart#show'
+    post 'cart/add'
+    post 'cart/remove'
+    resources :produits
 end

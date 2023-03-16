@@ -17,6 +17,9 @@
             <%= render "articles/categories/categories", categories: @nav_categories %>
         </li>
         <li class="nav-item">
+            <%= active_link_to 'Produits', produits_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
             <%= active_link_to 'Boutique', boutique_path, class: "nav-link" %>
         </li>
         <li class="nav-item">

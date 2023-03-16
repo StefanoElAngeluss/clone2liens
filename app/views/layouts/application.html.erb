@@ -21,6 +21,7 @@
             <%= render "parts/alerts" %>
 
             <div class="container">
+                <%= render "cart/cart" if @render_cart %>
                 <%= yield %>
             </div>
         </main>

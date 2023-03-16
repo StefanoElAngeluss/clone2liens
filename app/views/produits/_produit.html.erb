@@ -1,0 +1,15 @@
+<div id="<%= dom_id produit %>">
+    <div style="display:flex;justify-content:space-between; margin:0em 5em;">
+        <strong>Nom:</strong>
+        <%= produit.nom %>
+        <strong>Description:</strong>
+        <%= produit.description %>
+        <strong>Price:</strong>
+        <%= produit.price %>
+        <%= form_with(url: cart_add_path) do |f| %>
+            <%= f.hidden_field :id, value: produit.id %>
+            <%= f.number_field :quantity, value: 0, min: 1 %>
+            <%= f.submit "Ajouter au panier" %>
+        <% end %>
+    </div>
+</div>
