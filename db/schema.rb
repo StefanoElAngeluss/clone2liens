@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_194042) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_180727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_194042) do
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -126,6 +131,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_194042) do
     t.datetime "updated_at", null: false
     t.index ["read_at"], name: "index_notifications_on_read_at"
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
+  end
+
+  create_table "orderables", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "produit_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["produit_id"], name: "index_orderables_on_produit_id"
+  end
+
+  create_table "produits", force: :cascade do |t|
+    t.string "nom"
+    t.text "description"
+    t.decimal "price", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projets", force: :cascade do |t|
@@ -201,6 +224,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_194042) do
   add_foreign_key "commentaires", "users"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
+  add_foreign_key "orderables", "carts"
+  add_foreign_key "orderables", "produits"
   add_foreign_key "taggables", "articles"
   add_foreign_key "taggables", "tags"
 end

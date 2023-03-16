@@ -1,0 +1,8 @@
+<h1>Votre Panier</h1>
+<p>Le totale de votre panier est de <%= @cart.total %> € </p>
+<% @cart.orderables.each do |order| %>
+    <% @produit = orderable.produit %>
+    <p><%= produit.nom %> * <%= orderable.quantity %> = <%= produit.price * orderable.quantity %> € </p>
+<% end %>
+<p>Vous avez <%= @cart.orderables.size %> article(s) dans votre panier.</p>
+<!--<p>Vous pouvez <a href="<%#= url_for(@cart) %>">voir votre panier</a>.</p>-->
