@@ -4,7 +4,7 @@ class ProjetsController < ApplicationController
 
   # GET /projets or /projets.json
   def index
-    @projets = Projet.all
+    @projets = Projet.all.order(position: :asc)
   end
 
   # GET /projets/1 or /projets/1.json

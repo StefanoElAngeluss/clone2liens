@@ -23,6 +23,7 @@ gem "image_processing", "~> 1.2"
 ########## GEMS PESONNEL ##########
 gem "devise"
 gem "acts_as_votable"
+gem "acts_as_list"
 gem "active_link_to"
 gem "letter_opener"
 gem "sass"
