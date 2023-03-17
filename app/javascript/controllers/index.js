@@ -10,5 +10,8 @@ application.register("commentaires", CommentairesController)
 import DragController from "./drag_controller"
 application.register("drag", DragController)
 
+import EmojiPickerController from "./emoji_picker_controller"
+application.register("emoji-picker", EmojiPickerController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

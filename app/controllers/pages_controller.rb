@@ -22,9 +22,6 @@ class PagesController < ApplicationController
             disposition: 'inline')
     end
 
-    def boutique
-    end
-
     def contact
     end
 

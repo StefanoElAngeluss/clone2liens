@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
             <%= active_link_to 'Articles', articles_path, class: "nav-link" %>
         </li>
@@ -17,10 +17,7 @@
             <%= render "articles/categories/categories", categories: @nav_categories %>
         </li>
         <li class="nav-item">
-            <%= active_link_to 'Produits', produits_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-            <%= active_link_to 'Boutique', boutique_path, class: "nav-link" %>
+            <%= active_link_to 'Boutique', produits_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
             <%= active_link_to 'Projets', projets_path, class: "nav-link" %>

@@ -1,82 +1,105 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
+<div class="container">
+    <h2 align="center" class="mt-4">Editer mon compte<%#= resource_name.to_s.humanize %></h2>
+    <hr />
     <div class="field">
-        <%= f.label :username %><br />
-        <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-    </div
-
-    <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autocomplete: "email" %>
+        <div class="row">
+            <div class="col-4">
+                <div class="field">
+                    <%= f.label :username %>
+                    <%= f.text_field :username, class:"form-control", autofocus: true, autocomplete: "username" %><br />
+                </div>
+                <div class="field">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, class:"form-control", autocomplete: "email" %><br />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="field"><br />
+                <% if current_user.avatar.present? == true %>
+                    <% if resource.avatar.attached? %>
+                    <div class="d-flex justify-content-center">
+                        Votre image actuelle est:
+                        <%= image_tag(resource.avatar_thumbnail, class:"rounded-pill", style:"height:100px;width:100px;") if resource.avatar.attached? %>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col-4">
+                <% else current_user.avatar_url == true %>
+                    <%= image_tag(current_user.avatar_url, style:"width:100px; height: 100px; border-radius:100%; margin-top:20px;") %>&nbsp;
+                <% end %><br />
+                <%= f.file_field :avatar %><br />
+            </div>
+        </div>
     </div>
     <hr />
 
-    <div class="field inline-block mb-5">
-        Votre image actuelle est:
-        <% if current_user.avatar.present? == true %>
-            <% if resource.avatar.attached? %>
-                <%= image_tag(resource.avatar_thumbnail, class:"rounded-pill", style:"height:100px;width:100px;") if resource.avatar.attached? %>
-            <% end %><br />
-        <% else current_user.avatar_url == true %>
-            <%= image_tag(current_user.avatar_url, style:"width:100px; height: 100px; border-radius:100%; margin-top:20px;") %>&nbsp;
-        <% end %><br />
-        <%= f.file_field :avatar %><br />
-    </div>
-    <hr />
-
     <div class="field">
-        <%= f.label :rue %><br />
-        <%= f.text_field :rue, autocomplete: "rue" %>
-    </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="field">
+                    <%= f.label :rue %><br />
+                    <%= f.text_field :rue, class:"form-control", autocomplete: "rue" %>
+                </div>
 
-    <div class="field">
-        <%= f.label :ville %><br />
-        <%= f.text_field :ville, autocomplete: "ville" %>
-    </div>
+                <div class="field">
+                    <%= f.label :ville %><br />
+                    <%= f.text_field :ville, class:"form-control", autocomplete: "ville" %>
+                </div>
 
-    <div class="field">
-        <%= f.label :code_postale %><br />
-        <%= f.text_field :code_postale, autocomplete: "code_postale" %>
-    </div>
+                <div class="field">
+                    <%= f.label :code_postale %><br />
+                    <%= f.text_field :code_postale, class:"form-control", autocomplete: "code_postale" %>
+                </div>
 
-    <div class="field">
-        <%= f.label :pays %><br />
-        <%= f.text_field :pays, autocomplete: "pays" %>
-    </div>
+                <div class="field">
+                    <%= f.label :pays %><br />
+                    <%= f.text_field :pays, class:"form-control", autocomplete: "pays" %>
+                </div>
+            </div>
+            <div class="col-5">
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
 
-    <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-        <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-    </div>
+                <div class="field">
+                    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                    <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+                    <% if @minimum_password_length %>
+                    <br />
+                    <em><%= @minimum_password_length %> characters minimum</em>
+                    <% end %>
+                </div>
 
-    <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
+                <div class="field">
+                    <%= f.label :password_confirmation %><br />
+                    <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+                </div>
 
-    <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
-    </div>
+                <div class="field">
+                    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                    <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %>
+                </div>
 
-    <div class="actions">
-        <%= f.submit "Update" %>
-    </div>
-<% end %>
+                <div class="actions">
+                    <%= f.submit "Update" %>
+                </div>
+            <% end %>
+            </div>
+            </div>
+            </div>
 
-<h3>Cancel my account</h3>
 
-<div>Ce site ne vous plaît pas ? <%= button_to "Supprimer mon compte!!", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<h3>Supprimer mon compte</h3>
+<div>
+    <p>Ce site ne vous plaît pas ?</p>
+    <%= button_to "Supprimer mon compte!!", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-sm btn-danger" %>
+</div>
 
-<%= link_to "Back", :back %>
+<%#= link_to "Back", :back %>

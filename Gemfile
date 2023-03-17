@@ -38,6 +38,8 @@ gem "followability"
 gem "chartkick", "~> 5.0", ">= 5.0.1"
 gem "groupdate"
 gem "prawn", "~> 2.4"
+gem "simple_calendar", "~> 2.4"
+gem 'pagy', '~> 6.0', '>= 6.0.2'
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
