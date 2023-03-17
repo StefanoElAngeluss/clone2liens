@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :authenticate_user!, only: %i[ index show ]
-    before_action :set_article, only: %i[ show edit update destroy ]
+    before_action :set_article, only: %i[ show edit update destroy pdf ]
     before_action :set_cats
 
     # GET /articles or /articles.json
@@ -13,79 +13,99 @@ class ArticlesController < ApplicationController
         # end
     end
 
-  # GET /articles/1 or /articles/1.json
-  def show
-    # ajouter les views au articles avec incrementation de 1
-    @article.update(views: @article.views + 1)
-    @commentaires = @article.commentaires.order(created_at: :desc)
+    # GET /articles/1 or /articles/1.json
+    def show
+        # ajouter les views au articles avec incrementation de 1
+        @article.update(views: @article.views + 1)
+        @commentaires = @article.commentaires.order(created_at: :desc)
 
-    # if status === 1 || current_user.administrateur?
-    #   @article.update(views: @article.views + 1)
-    #   @comments = @article.comments.includes(:user, :rich_text_body).order(created_at: :desc)
+        # if status === 1 || current_user.administrateur?
+        #   @article.update(views: @article.views + 1)
+        #   @comments = @article.comments.includes(:user, :rich_text_body).order(created_at: :desc)
 
-    #   ahoy.track 'Article vue', article_id: @article.id
-
-    mark_notifications_as_read
-    # else
-    #   redirect_to articles_path, notice: "L'article publier n'as pas encore été axcepter par l'admin !"
-    # end
-  end
-
-  # GET /articles/new
-  def new
-    @article = Article.new
-  end
-
-  # GET /articles/1/edit
-  def edit
-    if current_user != @article.user
-        redirect_to articles_path, alert: "Vous n'êtes pas autoriser à modifier cet article!"
+        mark_notifications_as_read
+        # else
+        #   redirect_to articles_path, notice: "L'article publier n'as pas encore été axcepter par l'admin !"
+        # end
     end
-  end
 
-  # POST /articles or /articles.json
-  def create
-    @article = Article.new(article_params.except(:tags))
-    @article.user = current_user
-    create_or_delete_articles_tags(@article, params[:article][:tags])
-
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    # GET /articles/new
+    def new
+        @article = Article.new
     end
-  end
 
-  # PATCH/PUT /articles/1 or /articles/1.json
-  def update
-    @article.user = current_user
-    create_or_delete_articles_tags(@article, params[:article][:tags])
-    respond_to do |format|
-      if @article.update(article_params.except(:tags))
-        format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    # GET /articles/1/edit
+    def edit
+        if current_user != @article.user
+            redirect_to articles_path, alert: "Vous n'êtes pas autoriser à modifier cet article!"
+        end
     end
-  end
 
-  # DELETE /articles/1 or /articles/1.json
-  def destroy
-    @article.destroy
+    # POST /articles or /articles.json
+    def create
+        @article = Article.new(article_params.except(:tags))
+        @article.user = current_user
+        create_or_delete_articles_tags(@article, params[:article][:tags])
 
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
+        respond_to do |format|
+        if @article.save
+            format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
+            format.json { render :show, status: :created, location: @article }
+        else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @article.errors, status: :unprocessable_entity }
+        end
+        end
     end
-  end
 
-  private
+    # PATCH/PUT /articles/1 or /articles/1.json
+    def update
+        @article.user = current_user
+        create_or_delete_articles_tags(@article, params[:article][:tags])
+        respond_to do |format|
+        if @article.update(article_params.except(:tags))
+            format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
+            format.json { render :show, status: :ok, location: @article }
+        else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @article.errors, status: :unprocessable_entity }
+        end
+        end
+    end
+
+    # DELETE /articles/1 or /articles/1.json
+    def destroy
+        @article.destroy
+
+        respond_to do |format|
+        format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
+        format.json { head :no_content }
+        end
+    end
+
+    def pdf
+        pdf = Prawn::Document.new
+        pdf.text @article.titre,size: 48, style: :bold
+        # afficer le contenu avec l'encodage pour trix
+        pdf.move_down 40
+        pdf.text @article.contenu.to_plain_text, size: 14, style: :normal
+        pdf.move_down 20
+
+        # afficher l'image de l'article dans le pdfww
+        if @article.file.present?
+            file = StringIO.open(@article.file.download)
+            pdf.image file, fit: [540, 500], valign: :center
+        else
+            pdf.text "Cet article n'as d'image(s).", color: 'FF0000', valign: :center, size: 16, style: :bold
+        end
+
+        send_data(pdf.render,
+            filename: "#{@article.titre}.pdf",
+            type: 'application/pdf',
+            disposition: 'inline')
+    end
+
+    private
 
     def create_or_delete_articles_tags(article, tags)
         article.taggables.destroy_all
@@ -96,17 +116,17 @@ class ArticlesController < ApplicationController
     end
 
     def set_article
-      @article = Article.friendly.find(params[:id])
+    @article = Article.friendly.find(params[:id])
 
-      redirect_to @article, status: :moved_permanently if params[:id] != @article.slug
+    redirect_to @article, status: :moved_permanently if params[:id] != @article.slug
     end
 
     def set_cats
-      @categories = Category.all.order(:nom)
+    @categories = Category.all.order(:nom)
     end
 
     def article_params
-      params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags)
+    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags)
     end
 
     def mark_notifications_as_read
