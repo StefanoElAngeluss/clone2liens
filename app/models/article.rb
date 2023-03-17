@@ -7,6 +7,8 @@ class Article < ApplicationRecord
     belongs_to :user
 
     has_rich_text :contenu
+    has_one :content, class_name: 'ActionText::RichText', as: :record, dependent: :destroy
+
     belongs_to :category
     has_many :commentaires, dependent: :destroy
     has_many :likes

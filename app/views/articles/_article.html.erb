@@ -6,7 +6,10 @@
           <h6 class="me-auto badge bg-info rounded-pill text-dark" style="margin-top: 5px;margin-left:20px;">
             <%= article.category.nom.capitalize %>
           </h6>
-          <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue") %></h6>
+          <span class="mx-5 mt-1">
+            <span><%= link_to "Voir le PDF", article_pdf_path(article) %></span>
+          </span>
+          <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue".capitalize) %></h6>
         </div>
         <div class="row g-0">
             <%# if article.file.persisted? %>
@@ -17,7 +20,7 @@
             <%# end %>
             <%= render "articles/files/fichiers", article: article %>
 
-            <div class="col-md-8">
+            <div class="col">
                 <div class="card-text p-3">
                     <strong>Tags: &nbsp;</strong>
                     <% article.tags.each do |tag| %>
@@ -25,6 +28,7 @@
                             <span class="tag"><%= tag.name.capitalize %></span>
                         <% end %>
                     <% end %>
+                    <%= article.contenu %>
                 </div>
 
                 <p class="card-body">
@@ -41,7 +45,6 @@
                         <%#= article.status %>
                         </span>
                     <%# end %>
-                    <%#= article.contenu %>
                 </p>
             </div>
 

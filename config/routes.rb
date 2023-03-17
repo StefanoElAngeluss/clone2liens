@@ -14,31 +14,43 @@ Rails.application.routes.draw do
     }
     get 'profile/:id', to: 'users#profile', as: 'profile'
 
-    ########## FOLLOWER (suivre) ##########
+    ########## FOLLOWERS (suivre) ##########
     # suivre l'utilisateur
     post 'profile/follow', to: 'users#follow'
     delete 'profile/unfollow', to: 'users#unfollow'
+
     ########## PAGES ##########
     root 'pages#accueil', to: 'pages#accueil'
     get 'boutique', to: 'pages#boutique', as: 'boutique'
     get 'contact', to: 'pages#contact', as: 'contact'
     get 'a_propos', to: 'pages#about', as: 'about'
+
     ########## ARTICLES + COMMENTAIRES + CATEGORIES + TAGS ##########
     resources :articles do
         resources :commentaires
     end
     resources :categories
     resources :tags
+
     ########## LIKES ARTICLES ##########
     resources :likes, only: %i[ create destroy ]
+
     ########## RECHERCHE ##########
     get 'recherche', to: 'recherche#index'
+
     ########## PROJETS ##########
     resources :projets
     patch 'drag/projet'
+
     ########## PRODUITS ##########
     get 'cart', to: 'cart#show'
     post 'cart/add'
     post 'cart/remove'
     resources :produits
+
+    ########## PDF DOWNLOADS AND PREVIEWS ##########
+    get 'articles/pdf/:id', to: 'articles#pdf', as: 'article_pdf'
+    get 'download', to: 'pages#download'
+    get 'preview', to: 'pages#preview'
+
 end

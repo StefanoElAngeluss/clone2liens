@@ -29,14 +29,15 @@ gem "letter_opener"
 gem "sass"
 gem "noticed"
 gem "ransack", :github => "activerecord-hackery/ransack", :branch => "main"
-gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem "friendly_id", "~> 5.4", ">= 5.4.2"
 gem "bullet"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "followability"
-gem 'chartkick', '~> 5.0', '>= 5.0.1'
+gem "chartkick", "~> 5.0", ">= 5.0.1"
 gem "groupdate"
+gem "prawn", "~> 2.4"
 
 ########## GEMS DEVELOPMENT TEST ##########
 group :development, :test do
