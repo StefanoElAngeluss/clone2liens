@@ -20,9 +20,13 @@
         <main>
             <%= render "parts/alerts" %>
 
-            <div class="container">
-                <%= render "cart/cart" if @render_cart %>
-                <%= yield %>
+            <div class="row">
+                <div class="col-2">
+                    <%= render 'parts/sidebar' %>
+                </div>
+                <div class="col-9" style="margin: 0 60px;">
+                    <%= yield %>
+                </div>
             </div>
         </main>
 

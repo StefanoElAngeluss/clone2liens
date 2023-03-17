@@ -1,0 +1,137 @@
+<div class="sidebar_titre d-flex flex-column flex-shrink-0 p-3 bg-dark text-center" style="height: 40px; width: 300px; line-height:5px;">
+    <span class="fs-2 text-info" style="border-bottom: 3px solid #02b4fe1">Sidebar</span>
+</div>
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light" style="margin:0; width: 300px;">
+
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+            <!-- Vous pouvez définir un nom partiel différent pour les calendriers en passant le chemin partiel. -->
+            <%#= calendar(partial: 'products/calendar') do |date| %>
+                <%# <div style="width:20px;"> %>
+                    <%#= l(date, format: :short) %>
+                <%# </div> %>
+            <%# end %>
+            <div class="card mt-2 mb-4 p-2" style="word-wrap: normal;width:100%;">
+                <h4 align="center">Calendrier</h4>
+                <%= calendar(start_date_param: :my_date) do |date| %>
+                    <div style="width:20px;">
+                        <%= l(date, format: :short) %>
+                    </div>
+                <% end %>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+            <i class="fa fa-home bi me-2" aria-hidden="true" width="16" height="16"></i>
+            Home
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+            Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+            Orders
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+            Products
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+            Customers
+            </a>
+        </li>
+    </ul>
+
+    <hr />
+
+    <div class="container_sticky">
+        <div class="container-inner">
+            <div class="sticky-container">
+            <div class="sticky-outer">
+                <div class="sticky">
+                <svg width="0" height="0">
+                    <defs>
+                    <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+                        <path
+                            d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
+                            stroke-linejoin="round"
+                            stroke-linecap="square"
+                            />
+                    </clipPath>
+                    </defs>
+                </svg>
+                <div class="sticky-content">
+                    Bonjour!<br>
+                    ça fait plaisir de voir une belle personne.<br><br>
+                        petite note!
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <ul class="navbar-nav me-2 ms-2">
+        <li class="nav-item dropdown mt-1">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <% if user_signed_in? %>
+                    <%= image_tag(url_for(current_user.avatar_navbar), class: "me-2", style:"width:40px; height: 40px; border-radius:100%;") %><!--&nbsp;-->
+                    <%#= current_user.username %>
+                <%# elsif current_user && @user.avatar_url.present? %>
+                    <%#= image_tag(current_user.avatar_url, style:"width:40px; height: 40px; border-radius:100%; margin-top:20px;") %>
+                    <%= current_user.username %>
+                <% else %>
+                    Compte
+                <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end mt-2" aria-labelledby="navbarDropdown">
+                <% if user_signed_in? %>
+                    <%  if current_user.administrateur? %>
+                        <div class="dropdown-header text-success text-center text-uppercase mb-2" style="font-weight: bold;background-color: #D3F3E3;">
+                            Fonctionnalités Pages
+                        </div>
+                        <li><%= active_link_to 'Ajouter un nouvel article', new_article_path, class: "dropdown-item mb-2" %></li>
+                        <li><%= active_link_to "Ajouter une nouvelle Catégorie", new_category_path, class:"dropdown-item mb-2" %></li>
+                        <li><%= active_link_to "Ajouter un nouveau projet", new_projet_path, class:"dropdown-item mb-2" %></li>
+                        <li><%= active_link_to "Ajouter un nouveau produit", new_produit_path, class:"dropdown-item mb-2" %></li>
+                        <li><%= active_link_to "Ajouter un nouveau tag", new_tag_path, class:"dropdown-item mb-2"  %></li>
+
+                    <% end %>
+                    <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                    Fonctionnalités Compte
+                    </div>
+                    <% if current_user.administrateur? %>
+                        <li><%= active_link_to "Administration", administration_path, class:"dropdown-item mb-2" %></li>
+                    <% end %>
+                    <li><%= active_link_to "Mes infos", profile_path(current_user), class:"dropdown-item mb-2" %></li>
+                    <li><%= active_link_to 'Editer mon compte', edit_user_registration_path, class: "dropdown-item  mb-2" %></li>
+                    <div class="dropdown-header text-danger text-center text-uppercase mb-2" style="font-weight: bold;background-color: #F7D7D7;">
+                    Déconnexion Compte
+                    </div>
+                    <li><%= button_to "Déconnexion", destroy_user_session_path,
+                        method: :delete,
+                        "data-turbo-confirm": "Êtes vous sure de vouloir vous déconnecter ?",
+                        class:"dropdown-item link" %></li>
+                <% else %>
+                    <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                    Fonctionnalités Compte
+                    </div>
+                    <li><%= active_link_to 'Connexion', new_user_session_path, class: "dropdown-item  mb-2" %></li>
+                    <li><%= active_link_to 'Créer un compte', new_user_registration_path, class: "dropdown-item  mb-2" %></li>
+                <% end %>
+            </ul>
+        </li>
+    </ul>
+
+</div>

@@ -1,16 +1,19 @@
 class ArticlesController < ApplicationController
+    include Pagy::Backend
     before_action :authenticate_user!, only: %i[ index show ]
     before_action :set_article, only: %i[ show edit update destroy pdf ]
     before_action :set_cats
 
     # GET /articles or /articles.json
     def index
-        # if params[:category].blank?
+        if params[:category].blank?
             @articles = Article.all.order(created_at: :desc)
-        # else
-        #     @articles = Article.where(category_id: category_id).order(created_at: :desc)
-        #     @category_id = Category.find_by(nom: params[:category_id])
-        # end
+        else
+            @articles = Article.where(category_id: category_id).order(created_at: :desc)
+            @category_id = Category.find_by(nom: params[:category_id])
+        end
+        @pagy, @articles = pagy(Article.order(created_at: :desc), items: 4)
+        # @pagy, @articles = pagy(Article.order(created_at: :desc))
     end
 
     # GET /articles/1 or /articles/1.json
