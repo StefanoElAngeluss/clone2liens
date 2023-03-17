@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'recherche', to: 'recherche#index'
     ########## PROJETS ##########
     resources :projets
+    patch 'drag/projet'
     ########## PRODUITS ##########
     get 'cart', to: 'cart#show'
     post 'cart/add'
