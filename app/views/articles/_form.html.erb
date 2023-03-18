@@ -11,28 +11,28 @@
         </div>
     <% end %>
 
-    <div class="row">
-        <div class="col">
+    <div class="row mb-4">
+        <div class="col mb-2">
             <div>
                 <%= form.label :titre, style: "display: block" %>
                 <%= form.text_field :titre %>
             </div>
         </div>
 
-        <div class="col">
+        <div class="col mb-2">
             <div>
-                <%= form.label :file, style: "display: block" %>
-                <%= form.file_field :file %>
+                <%= form.label "Catégorie", style: "display: block" %>
+                <%= form.select :category_id, Category.all.map{|c|[c.nom, c.id]}, prompt: "Selectionnez une Catégorie" %>
+                <%#= form.label :category, style: "display: block;" %>
+                <%#= form.select :category_id, options_for_select(@categories.collect { |c| [c.nom, c.id] }) %>
             </div>
         </div>
 
-        <div>
-            <%= form.label :category, style: "display: block" %>
-            <%= form.select :category_id, Category.all.map{|c|[c.nom, c.id]}, prompt: "Selectionnez une Catégorie" %>
-            <%#= form.label :category, style: "display: block;" %>
-            <%#= form.select :category_id, options_for_select(@categories.collect { |c| [c.nom, c.id] }) %>
-        </div>
+
     </div>
+
+    <div class="mb-4"><%= render "articles/dropzone/image_form", form: form %></div>
+
 
     <%= content_tag(:div, "", class: "pickerContainer", data: {
         emoji_picker_target: "pickerContainer"

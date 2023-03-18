@@ -5,13 +5,23 @@ puts "--------------------------------"
 puts "--------------------------------"
 puts "création des utilisateurs"
 User.create(
-    username: "stefano",
+    username: "Stefano",
     email: "stefano@mail.com",
     password: "123456",
     password_confirmation: "123456")
 User.create(
-    username: "john",
+    username: "John",
     email: "john@mail.com",
+    password: "123456",
+    password_confirmation: "123456")
+User.create(
+    username: "Jane",
+    email: "jane@mail.com",
+    password: "123456",
+    password_confirmation: "123456")
+User.create(
+    username: "Shane",
+    email: "shane@mail.com",
     password: "123456",
     password_confirmation: "123456")
 
@@ -35,7 +45,7 @@ elapsed = Benchmark.measure do
         5.times do |y|
             art.commentaires.create(
                 contenu: "Commentaire #{y} Wafer roll bear claw liquorice tootsie",
-                user_id: User.first.id)
+                user_id: User.second.id)
         end
     end
     10.times do |x|
@@ -47,7 +57,7 @@ elapsed = Benchmark.measure do
         5.times do |y|
             art.commentaires.create(
                 contenu: "Commentaire #{y} Wafer roll bear claw liquorice tootsie",
-                user_id: User.second.id)
+                user_id: User.third.id)
         end
     end
 end
