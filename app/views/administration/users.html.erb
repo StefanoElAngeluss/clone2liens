@@ -35,7 +35,9 @@
             <%= l(user.created_at.to_date, format: :long) %>
         </td>
         <td>
-            <%= l(user.confirmed_at, format: :long) %> à <%= l(user.confirmed_at, format: :heure) %>
+            <% if user.confirmed_at? %>
+                <%= l(user.confirmed_at, format: :long) %> à <%= l(user.confirmed_at, format: :heure) %>
+            <% end %>
         </td>
         </tr>
     <% end %>

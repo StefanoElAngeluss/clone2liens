@@ -22,9 +22,9 @@ class Article < ApplicationRecord
 
     #### Single image upload ####
 	# has_one_attached :file, dependent: :destroy
-	has_one_attached :image, dependent: :destroy
+	# has_one_attached :image, dependent: :destroy
 	#### Multiple images upload ####
-	# has_many_attached :images
+	has_many_attached :images
 
     has_noticed_notifications model_name: "Notification"
     has_many :notifications, through: :user

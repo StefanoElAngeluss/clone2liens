@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
     include Pagy::Backend
     before_action :authenticate_user!, only: %i[ index show ]
-    before_action :set_article, only: %i[ show edit update destroy pdf ]
+    before_action :set_article, only: %i[ show edit update destroy pdf images ]
     before_action :set_cats
 
     # GET /articles or /articles.json
@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
             @articles = Article.where(category_id: category_id).order(created_at: :desc)
             @category_id = Category.find_by(nom: params[:category_id])
         end
-        @pagy, @articles = pagy(Article.order(created_at: :desc), items: 4)
+        @pagy, @articles = pagy(Article.order(created_at: :asc), items: 4)
         # @pagy, @articles = pagy(Article.order(created_at: :desc))
     end
 
@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
     def create
         @article = Article.new(article_params.except(:tags))
         @article.user = current_user
+        @article.images.attach(params[:article][:images])
         create_or_delete_articles_tags(@article, params[:article][:tags])
 
         respond_to do |format|
@@ -129,7 +130,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags, :image)
+    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags, images: [])
     end
 
     def mark_notifications_as_read

@@ -369,6 +369,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener
+  mini_magick
   noticed
   omniauth
   omniauth-google-oauth2
