@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import './actiontext.css';
-@import './trix.css';
-@import './app.css';
+@import 'actiontext.css';
+@import 'app.css';
+@import 'dropzone.css';
 @import 'simple_calendar.css';
+@import 'trix.css';

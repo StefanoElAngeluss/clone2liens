@@ -94,7 +94,7 @@ class ArticlesController < ApplicationController
         pdf.text @article.contenu.to_plain_text, size: 14, style: :normal
         pdf.move_down 20
 
-        # afficher l'image de l'article dans le pdfww
+        # afficher l'image de l'article dans le pdf
         if @article.file.present?
             file = StringIO.open(@article.file.download)
             pdf.image file, fit: [540, 500], valign: :center
@@ -129,7 +129,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags)
+    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags, :image)
     end
 
     def mark_notifications_as_read

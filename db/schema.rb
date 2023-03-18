@@ -88,18 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
     t.index ["user_id"], name: "index_commentaires_on_user_id"
   end
 
-  create_table "followability_relationships", force: :cascade do |t|
-    t.string "followerable_type", null: false
-    t.bigint "followerable_id", null: false
-    t.string "followable_type", null: false
-    t.bigint "followable_id", null: false
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["followable_type", "followable_id"], name: "index_followability_relationships_on_followable"
-    t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -215,6 +203,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

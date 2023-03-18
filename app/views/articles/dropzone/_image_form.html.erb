@@ -1,0 +1,7 @@
+<div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="5" data-dropzone-accepted-files="image/*" data-dropzone-max-files="1" data-upload-multiple="true">
+  <%= form.file_field :image, multiple: false, direct_upload: true, data: { dropzone_target: 'input' } %>
+  <div class="dropzone-msg dz-message needsclick">
+    <h3 class="dropzone-msg-title">Fait glisser une ou plusieures images ici pour uploder ou clique ici pour rechercher</h3>
+    <span class="dropzone-msg-desc">fichier de 2 MB maximum. types de fichier autorisé png, jpg.</span>
+  </div>
+</div>
