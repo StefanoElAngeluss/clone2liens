@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
     include Pagy::Backend
     before_action :authenticate_user!, only: %i[ index show ]
-    before_action :set_article, only: %i[ show edit update destroy pdf images ]
+    before_action :set_article, only: %i[ show edit update destroy pdf ]
     before_action :set_cats
 
     # GET /articles or /articles.json
@@ -96,9 +96,11 @@ class ArticlesController < ApplicationController
         pdf.move_down 20
 
         # afficher l'image de l'article dans le pdf
-        if @article.file.present?
-            file = StringIO.open(@article.file.download)
-            pdf.image file, fit: [540, 500], valign: :center
+        if @article.images.present?
+            images = StringIO.open(@article.images.first.blob.download)
+            pdf.image images, fit: [540, 500], valign: :center
+            images = StringIO.open(@article.images.second.blob.download)
+            pdf.image images, fit: [540, 500], valign: :center
         else
             pdf.text "Cet article n'as d'image(s).", color: 'FF0000', valign: :center, size: 16, style: :bold
         end
@@ -130,7 +132,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-    params.require(:article).permit(:titre, :contenu, :file, :category_id, :tags, images: [])
+    params.require(:article).permit(:titre, :contenu, :category_id, :tags, images: [])
     end
 
     def mark_notifications_as_read

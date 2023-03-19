@@ -1,11 +1,16 @@
-<h1 class="peer">Pages#accueil</h1>
-<p>Find me in app/views/pages/accueil.html.erb</p>
+<main style="position:fixed;margin:auto;z-index:-1;">
+    <h1 class="peer">Pages#accueil</h1>
+    <p class="peer">Find me in app/views/pages/accueil.html.erb</p>
 
-<p>
-    <%= link_to "télécharger", download_path %>
-    <%= link_to "Aperçu", preview_path %>
-</p>
-<p>
-    <%= link_to 'about', about_path %>
-    <%= link_to 'contact', contact_path %>
-</p>
+    <div class="canvas">
+        <%= content_tag(:canvas, "", data: { controller: "threejs" }) %>
+    </div>
+    <p>
+        <%= link_to "télécharger", download_path, class: "peer" %>
+        <%= link_to "Aperçu", preview_path, class: "peer" %>
+    </p>
+    <p>
+        <%= link_to 'about', about_path, class: "peer" %>
+        <%= link_to 'contact', contact_path, class: "peer" %>
+    </p>
+</main>
