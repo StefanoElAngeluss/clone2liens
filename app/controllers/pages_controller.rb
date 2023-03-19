@@ -17,7 +17,7 @@ class PagesController < ApplicationController
         pdf.text 'This is a new page'
         send_data(
             pdf.render,
-            filename: 'hello.pdf',
+            filename: 'export.pdf',
             type: 'application/pdf',
             disposition: 'inline')
     end

@@ -18,3 +18,6 @@ application.register("emoji-picker", EmojiPickerController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ThreejsController from "./threejs_controller"
+application.register("threejs", ThreejsController)

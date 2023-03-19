@@ -13,22 +13,25 @@
 
     <body>
 
-        <header>
+        <header class="col-12">
             <%= render 'parts/navbar' %>
         </header>
+        <%= render "parts/alerts" %>
 
-        <main>
-            <%= render "parts/alerts" %>
 
-            <div class="row">
-                <div class="col-2">
-                    <%= render 'parts/sidebar' %>
-                </div>
-                <div class="col-9" style="margin: 0 60px;">
-                    <%= yield %>
-                </div>
-            </div>
-        </main>
+        <article class="col-9 float-end align-items-center mx-5">
+            <%= yield %>
+        </article>
+
+
+        <aside class="col-2 float-start">
+            <%= render 'parts/sidebar' %>
+        </aside>
+
+
+        <footer class="col-12">
+            <%= render 'parts/footer' %>
+        </footer>
 
     </body>
 </html>

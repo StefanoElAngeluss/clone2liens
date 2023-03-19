@@ -11,8 +11,7 @@ Things you may want to cover:
 -   -   Gems avec problèmes.
 
 *   mailcatcher ne s'installe pas.
-*   le bouton des commentaire ne toggle passur cancel.
-*   voir les images uploader et les images compte google dans la navbar et dans profile.
+*   le bouton des commentaire ne toggle pas sur cancel.
 *   Voir le N+1 Query avec bullet et le régler.
 
 <!-- -   Configuration -->
@@ -29,4 +28,4 @@ Things you may want to cover:
 
 -   -   Command:
 -   npm run build
--   npm run buildcss
+-   npm run build-css
