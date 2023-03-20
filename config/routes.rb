@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     root 'pages#accueil', to: 'pages#accueil'
     get 'contact', to: 'pages#contact', as: 'contact'
     get 'a_propos', to: 'pages#about', as: 'about'
+    get 'politique de confidentialité', to: 'pages#privacy', as: 'politique_de_confidentialite'
 
     ########## ARTICLES + COMMENTAIRES + CATEGORIES + TAGS ##########
     resources :articles do
