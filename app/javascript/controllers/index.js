@@ -19,5 +19,8 @@ application.register("emoji-picker", EmojiPickerController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import JeuxdechecController from "./jeuxdechec_controller"
+application.register("jeuxdechec", JeuxdechecController)
+
 import ThreejsController from "./threejs_controller"
 application.register("threejs", ThreejsController)

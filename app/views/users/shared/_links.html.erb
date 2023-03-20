@@ -24,7 +24,7 @@
         url: omniauth_authorize_path(resource_name, provider),
         method: :post,
         data: { turbo: "false" } do |f| %>
-        <%= f.submit "Login", type: "image", src: url_for("/assets/btn_google_signin_dark_pressed_web") %>
+        <%= f.submit "Login", type: "image", src: url_for("/assets/bootstrapButton/btn_google_signin_dark_pressed_web") %>
         <%#= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
     <% end %>
   <% end %>

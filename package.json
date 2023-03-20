@@ -9,6 +9,8 @@
         "@rails/activestorage": "^7.0.4",
         "chart.js": "^4.2.1",
         "chartkick": "^5.0.1",
+        "chess.js": "^1.0.0-beta.4",
+        "chessboardjs": "^0.0.1",
         "dropzone": "^6.0.0-beta.2",
         "esbuild": "^0.17.10",
         "picmo": "^5.8.1",

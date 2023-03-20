@@ -1,0 +1,20 @@
+<li class="nav-item dropdown">
+	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		Divertissements
+	</a>
+	<ul class="dropdown-menu dropdown-menu-lg-end mt-3" aria-labelledby="navbarDropdown">
+		<li>
+			<div class="dropdown-header text-dark text-center text-uppercase"
+                style="font-weight: bold;background-color: #B7C3F9;">
+				Amusez-vous
+			</div>
+		</li>
+		<li><%= link_to "Mes Projets", projets_path, class:"dropdown-item" %></li>
+		<li><%#= link_to "Ma Galerie", galeries_path, class:"dropdown-item" %></li>
+		<li><%#= link_to "Mon Compteur de Fête", countdowns_path, class:"dropdown-item" %></li>
+		<li><%= link_to "Jeux d'échec", jeux_d_echec_path, class:"dropdown-item" %></li>
+		<li><%#= link_to "Blockly Game", blockly_path, class:"dropdown-item" %></li>
+		<li><%#= link_to "Objets 3D", displayables_path, class:"dropdown-item" %></li>
+		<li><hr class="dropdown-divider"></li>
+	</ul>
+</li>
