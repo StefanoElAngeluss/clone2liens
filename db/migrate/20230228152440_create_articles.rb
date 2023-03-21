@@ -4,6 +4,7 @@ class CreateArticles < ActiveRecord::Migration[7.0]
       t.string :titre
       t.text :contenu
       t.integer :views, default: 0
+      t.integer :status, default: 0
 
       t.timestamps
     end

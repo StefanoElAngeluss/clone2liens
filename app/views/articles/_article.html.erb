@@ -1,66 +1,70 @@
-<div class="card mt-2 mb-3" style="max-width: 580px;">
-    <div class="row g-0">
-        <!-- <img src="images/lac.jpg" width="100%" height="250px" /> -->
-        <%# if article.image.present? %>
-            <%#= link_to image_tag(article.image, style:"width:100%; height:250px;"), current_user.avatar %>
-        <%# end %>
-
-        <div class="card-header d-flex justify-content-between">
-            <h5 class="card-title"><%= article.titre %></h5>
-            <div class="badge bg-info rounded-pill text-dark" style="margin-top: 5px;margin-left:20px; line-height:16px;">
-                <%= article.category.nom.capitalize %>
-            </div>
-            <span class="mx-5 mt-1">
-                <span><%= link_to "Voir le PDF", article_pdf_path(article) %></span>
-            </span>
-            <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue".capitalize) %></h6>
-        </div>
-
-        <div class=”carousel-inner”>
-            <% article.images.each_with_index do |image,i| %>
-                <div class="carousel-item <%= "active " if i==0 %>">
-                    <%= image_tag  image, style:"width:100%; height:250px;" %>
-                </div>
-            <% end %>
-        </div>
-
-        <div class="card-text p-3">
-            <strong>Tags: &nbsp;</strong>
-            <% article.tags.each do |tag| %>
-                <%= link_to tag, style:"text-decoration:none;" do %>
-                    <span class="tag"><%= tag.name.capitalize %></span>
-                <% end %>
-            <% end %>
-            <span style="margin-top:100px;">
-                <%= article.contenu %>
-            </span>
-        </div>
-
-        <p class="card-body">
-            <%# if article.status === "archiver" %>
-                <span class="badge bg-primary text-gray-dark rounded-pill">
-                <%#= article.status %>
-                </span>
-            <%# elsif article.status === "brouillon" %>
-                <span class="badge bg-secondary text-gray-dark rounded-pill">
-                <%#= article.status %>
-                </span>
-            <%# else article.status === "publier" %>
-                <span class="badge bg-success text-gray-dark rounded-pill">
-                <%#= article.status %>
-                </span>
+<% if article.status == "publier" || current_user.administrateur? %>
+    <div class="card mt-2 mb-3" style="max-width: 580px;">
+        <div class="row g-0">
+            <!-- <img src="images/lac.jpg" width="100%" height="250px" /> -->
+            <%# if article.image.present? %>
+                <%#= link_to image_tag(article.image, style:"width:100%; height:250px;"), current_user.avatar %>
             <%# end %>
-        </p>
 
-        <div class="card-footer">
-            <p class="card-text d-flex justify-content-around">
-            <small class="text-muted mt-1">Dernière mise à jour: <%= l(article.updated_at.to_date, format: :long) %></small>
-            <small class="mt-1">
-                Posté par : <%= link_to article.user.username, profile_path(article.user), style:"text-decoration:none;font-weight: bold;color:green;" %>
-            </small>
-            <%= link_to "Voir cet article", article, class: "btn btn-sm btn-primary" %>
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title"><%= truncate(strip_tags(article.titre.to_s), length: 24) %></h5>
+                <div class="badge bg-info rounded-pill text-dark mx-2" style="margin-top: 5px;margin-left:20px; line-height:16px;">
+                    <%= article.category.nom.capitalize %>
+                </div>
+                <span class="mt-1">
+                    <span><%= link_to "Voir le PDF", article_pdf_path(article) %></span>
+                </span>
+                <h6 class="mt-1 badge bg-secondary rounded-pill text-light"><%= pluralize(article.views, "vue".capitalize) %></h6>
+            </div>
+
+            <div class=”carousel-inner”>
+                <% article.images.each_with_index do |image,i| %>
+                    <div class="carousel-item <%= "active " if i==0 %>">
+                        <%= image_tag  image, style:"width:100%; height:250px;" %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="card-text p-3">
+                <p>
+                    <strong>Tags: &nbsp;</strong>
+                    <% article.tags.each do |tag| %>
+                        <%= link_to tag, style:"text-decoration:none;" do %>
+                            <span class="tag"><%= tag.name.capitalize %></span>
+                        <% end %>
+                    <% end %>
+                </p>
+                <span style="margin-top:100px;">
+                    <%= article.contenu %>
+                </span>
+            </div>
+
+            <p class="card-body">
+                <% if article.status === "archiver" %>
+                    <span class="badge bg-primary text-gray-dark rounded-pill">
+                        <%= article.status %>
+                    </span>
+                <% elsif article.status === "brouillon" %>
+                    <span class="badge bg-secondary text-gray-dark rounded-pill">
+                        <%= article.status %>
+                    </span>
+                <% else article.status === "publier" %>
+                    <span class="badge bg-success text-gray-dark rounded-pill">
+                        <%= article.status %>
+                    </span>
+                <% end %>
             </p>
-        </div>
 
+            <div class="card-footer">
+                <p class="card-text d-flex justify-content-around">
+                <small class="text-muted mt-1">Dernière mise à jour: <%= l(article.updated_at.to_date, format: :long) %></small>
+                <small class="mt-1">
+                    Posté par : <%= link_to article.user.username, profile_path(article.user), style:"text-decoration:none;font-weight: bold;color:green;" %>
+                </small>
+                <%= link_to "Voir cet article", article, class: "btn btn-sm btn-primary" %>
+                </p>
+            </div>
+
+        </div>
     </div>
-</div>
+<% end %>

@@ -1,70 +1,62 @@
-<div class="mt-5">
-
-    <div id="<%= dom_id @article %>">
-
-        <div class="card mb-3" style="max-width: 100%;">
-            <div class="card-header d-flex justify-content-between">
-                <div class="d-flex d-inline">
-                    <h4 class="card-title"><%= @article.titre %></h4>
-                    <h6 class="me-auto badge bg-success rounded-pill text-light" style="margin-top: 5px;margin-left:20px;">
-                    <%= link_to @article.category.nom.capitalize, @article.category, class:"text-light", style:"text-decoration:none;" %></h6>
-                </div>
-                <small class="text-primary mt-1">
-                Posté par : <%= link_to @article.user.username, profile_path(@article.user), style:"text-decoration:none;text-transform: uppercase;font-weight: bold;" %>
-                </small>
-                <h6 class="mt-1"><%= pluralize(@article.views, "vue") %></h6>
+<div class="mt-5" id="<%= dom_id @article %>">
+    <div class="card mb-3" style="max-width: 100%;">
+        <div class="card-header d-flex justify-content-between">
+            <div class="d-flex d-inline">
+                <h4 class="card-title"><%= @article.titre %></h4>
+                <h6 class="me-auto badge bg-success rounded-pill text-light" style="margin-top: 5px;margin-left:20px;">
+                <%= link_to @article.category.nom.capitalize, @article.category, class:"text-light", style:"text-decoration:none;" %></h6>
             </div>
-
-            <div class="d-flex" style="padding:15px;">
-                <div>
-                    <% @article.images.each do |image| %>
-                        <%= image_tag  image, style:"width:576px;height:250px;" %>
-                    <% end %>
-                </div>
-                <!--<%# if @article.image.persisted? %>
-                    <%#= link_to image_tag(@article.image, style:"width:100%; height:450px;") %>
-                <%# else %>
-                    Pas d'image
-                <%# end %>-->
+            <small class="text-primary mt-1">
+            Posté par : <%= link_to @article.user.username, profile_path(@article.user), style:"text-decoration:none;text-transform: uppercase;font-weight: bold;" %>
+            </small>
+            <h6 class="mt-1"><%= pluralize(@article.views, "vue") %></h6>
+        </div>
+        <div class="d-flex" style="padding:15px;">
+            <div>
+                <% @article.images.each do |image| %>
+                    <%= image_tag  image, style:"width:576px;height:250px;" %>
+                <% end %>
             </div>
-
-            <div class="col-md-8">
-                <div class="card-body">
-                    <p class="card-text"><%= @article.contenu %></p>
-                </div>
+            <!--<%# if @article.image.persisted? %>
+                <%#= link_to image_tag(@article.image, style:"width:100%; height:450px;") %>
+            <%# else %>
+                Pas d'image
+            <%# end %>-->
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <p class="card-text"><%= @article.contenu %></p>
             </div>
-            <div class="card-footer">
-                <p class="card-text d-flex justify-content-between">
-                    <% if current_user == @article.user %>
+        </div>
+        <div class="card-footer">
+            <p class="card-text d-flex justify-content-between">
+                <% if current_user == @article.user %>
                     <%= link_to "Editer", edit_article_path(@article), remote: true, class:"btn btn-warning mt-1" %>
-                    <% end %>
-                    <%= link_to "Retour aux articles", articles_path, class: "btn btn-info mt-1" %>
-                    <% if current_user == @article.user %>
+                <% end %>
+                <%= link_to "Retour aux articles", articles_path, class: "btn btn-info mt-1" %>
+                <% if current_user == @article.user %>
                     <%= link_to "Supprimer", @article, data: { "turbo-method": :delete, "turbo-confirm": "Êtes vous sûr de vouloir supprimer cet Article ?" }, class: "btn btn-danger mt-1" %>
-                    <% end %>
-                </p>
+                <% end %>
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="container mb-5">
+        <h4>Postez un commentaire.</h4>
+        <div class="row">
+            <div class="col mt-3">
+                <%= render 'articles/commentaires/form',
+                article: @article,
+                commentaire: @article.commentaires.build,
+                submit_label: "Envoyer" %>
+            </div>
+            <div class="col">
+                <% @commentaires.each do |com| %>
+                    <%= render 'articles/commentaires/commentaire',
+                        article: @article,
+                        commentaire: com %>
+                <% end %>
             </div>
         </div>
-        <hr>
-
-        <div class="container mb-5">
-            <h4>Postez un commentaire.</h4>
-            <div class="row">
-                <div class="col mt-3">
-                    <%= render 'articles/commentaires/form',
-                    article: @article,
-                    commentaire: @article.commentaires.build,
-                    submit_label: "Envoyer" %>
-                </div>
-                <div class="col">
-                    <% @commentaires.each do |com| %>
-                        <%= render 'articles/commentaires/commentaire',
-                            article: @article,
-                            commentaire: com %>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>

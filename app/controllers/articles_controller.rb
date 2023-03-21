@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-    include Pagy::Backend
     before_action :authenticate_user!, only: %i[ index show ]
+    before_action :authorize_user, except: %i[ index show ]
+    include Pagy::Backend
     before_action :set_article, only: %i[ show edit update destroy pdf ]
     before_action :set_cats
 
@@ -12,24 +13,20 @@ class ArticlesController < ApplicationController
             @articles = Article.where(category_id: category_id).order(created_at: :desc)
             @category_id = Category.find_by(nom: params[:category_id])
         end
-        @pagy, @articles = pagy(Article.order(created_at: :asc), items: 4)
+        @pagy, @articles = pagy(Article.order(status: :desc), items: 4)
         # @pagy, @articles = pagy(Article.order(created_at: :desc))
     end
 
     # GET /articles/1 or /articles/1.json
     def show
-        # ajouter les views au articles avec incrementation de 1
-        @article.update(views: @article.views + 1)
-        @commentaires = @article.commentaires.order(created_at: :desc)
-
-        # if status === 1 || current_user.administrateur?
-        #   @article.update(views: @article.views + 1)
-        #   @comments = @article.comments.includes(:user, :rich_text_body).order(created_at: :desc)
-
+        if status === 1 || current_user.administrateur?
+            # ajouter les views au articles avec incrementation de 1
+            @article.update(views: @article.views + 1)
+            @commentaires = @article.commentaires.order(created_at: :desc)
+        else
+            redirect_to articles_path, notice: "L'article publier n'as pas encore été axcepter par l'admin !"
+        end
         mark_notifications_as_read
-        # else
-        #   redirect_to articles_path, notice: "L'article publier n'as pas encore été axcepter par l'admin !"
-        # end
     end
 
     # GET /articles/new
@@ -39,9 +36,9 @@ class ArticlesController < ApplicationController
 
     # GET /articles/1/edit
     def edit
-        if current_user != @article.user
-            redirect_to articles_path, alert: "Vous n'êtes pas autoriser à modifier cet article!"
-        end
+        # if current_user != @article.user
+        #     redirect_to articles_path, alert: "Vous n'êtes pas autoriser à modifier cet article!"
+        # end
     end
 
     # POST /articles or /articles.json
@@ -52,28 +49,28 @@ class ArticlesController < ApplicationController
         create_or_delete_articles_tags(@article, params[:article][:tags])
 
         respond_to do |format|
-        if @article.save
-            format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
-            format.json { render :show, status: :created, location: @article }
-        else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @article.errors, status: :unprocessable_entity }
-        end
+            if @article.save
+                format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
+                format.json { render :show, status: :created, location: @article }
+            else
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @article.errors, status: :unprocessable_entity }
+            end
         end
     end
 
     # PATCH/PUT /articles/1 or /articles/1.json
     def update
-        @article.user = current_user
+        @article.user = @article.user
         create_or_delete_articles_tags(@article, params[:article][:tags])
         respond_to do |format|
-        if @article.update(article_params.except(:tags))
-            format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
-            format.json { render :show, status: :ok, location: @article }
-        else
-            format.html { render :edit, status: :unprocessable_entity }
-            format.json { render json: @article.errors, status: :unprocessable_entity }
-        end
+            if @article.update(article_params.except(:tags))
+                format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
+                format.json { render :show, status: :ok, location: @article }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @article.errors, status: :unprocessable_entity }
+            end
         end
     end
 
@@ -113,26 +110,31 @@ class ArticlesController < ApplicationController
 
     private
 
+    def authorize_user
+        article = @article || Article
+        authorize article
+    end
+
+    def set_article
+        @article = Article.friendly.find(params[:id])
+
+        redirect_to @article, status: :moved_permanently if params[:id] != @article.slug
+    end
+
+    def article_params
+        params.require(:article).permit(:titre, :contenu, :category_id, :tags, :status, images: [])
+    end
+
+    def set_cats
+        @categories = Category.all.order(:nom)
+    end
+
     def create_or_delete_articles_tags(article, tags)
         article.taggables.destroy_all
         tags = tags.strip.split(",")
         tags.each do |tag|
             article.tags << Tag.find_or_create_by(name: tag)
         end
-    end
-
-    def set_article
-    @article = Article.friendly.find(params[:id])
-
-    redirect_to @article, status: :moved_permanently if params[:id] != @article.slug
-    end
-
-    def set_cats
-    @categories = Category.all.order(:nom)
-    end
-
-    def article_params
-    params.require(:article).permit(:titre, :contenu, :category_id, :tags, images: [])
     end
 
     def mark_notifications_as_read

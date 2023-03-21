@@ -37,14 +37,17 @@
     <%= content_tag(:div, "", class: "pickerContainer", data: {
         emoji_picker_target: "pickerContainer"
     }) %>
-    <div>
-        <%= form.label :contenu, style: "display: block" %>
-        <%= form.rich_text_area :contenu,
-            data: {
-                emoji_picker_target: "trixEditor"
-            }, class: "form-control"
-        %>
-    </div>
+    <%= form.label :contenu, style: "display: block" %>
+    <%= form.rich_text_area :contenu,
+        data: {
+            emoji_picker_target: "trixEditor"
+        }, class: "form-control" %>
+
+    <!-- Ajouter un dropdown de selection pour le status des articles -->
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, Article.statuses.keys %>
+  </div>
 
     <div>
         <%= form.label :tag, style: "display: block" %>
