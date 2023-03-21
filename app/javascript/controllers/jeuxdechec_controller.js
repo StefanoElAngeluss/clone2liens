@@ -1,6 +1,6 @@
-import { Controller } from "@hotwired/stimulus"
-import { Chess } from "chess.js"
-import Chessboard from "chessboardjs"
+import { Controller } from "@hotwired/stimulus";
+import { Chess } from "chess.js";
+import ChessBoard3 from "chessboardjs";
 
 // Connects to data-controller="chess"
 export default class extends Controller {
@@ -9,21 +9,25 @@ export default class extends Controller {
   }
 }
 
-// NOTE: this example uses the chess.js library:
-// https://github.com/jhlywa/chess.js
-let board = Chessboard("board", config);
-var game = new Chess()
-var whiteSquareGrey = '#e0e0e0'
-var blackSquareGrey = '#424242'
-// var whiteSquareGrey = '#a9a9a9'
-// var blackSquareGrey = '#696969'
+var init = function() {
+
+//--- start example JS ---
+  //--- end example JS ---
+
+}; // end init()
+$(document).ready(init);
+
+var board = null;
+var game = new Chess();
+var whiteSquareGrey = "#a9a9a9";
+var blackSquareGrey = "#696969";
 
 function removeGreySquares() {
-  $("#board .square-55d63").css("background", "");
+  $("#board1 .square-55d63").css("background", "");
 }
 
 function greySquare(square) {
-  var $square = $("#board .square-" + square);
+  var $square = $("#board1 .square-" + square);
 
   var background = whiteSquareGrey;
   if ($square.hasClass("black-3c85d")) {
@@ -107,6 +111,8 @@ function onMouseoverSquare(square, piece) {
 }
 
 function onMouseoutSquare(square, piece) {
+  square: square;
+  piece: piece;
   removeGreySquares();
 }
 
@@ -122,8 +128,10 @@ var config = {
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   onSnapEnd: onSnapEnd,
-  pieceTheme: "assets/images/jeuxEchec/{piece}.png",
-}
+  pieceTheme: "assets/chesspieces/iconic/{piece}.json",
+};
+board = ChessBoard3("board1", "start", config);
+
 $('#destroyBtn').on('click', board.destroy)
 $('#clearBoardBtn').on('click', board.clear)
 $('#startPositionBtn').on('click', board.start)

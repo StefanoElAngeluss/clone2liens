@@ -20,6 +20,8 @@ class Article < ApplicationRecord
         titre_changed? || slug.blank?
     end
 
+    enum :status, { brouillon: 0, publier: 1, archiver: 2 }, _suffix: true
+
     #### Single image upload ####
 	# has_one_attached :file, dependent: :destroy
 	# has_one_attached :image, dependent: :destroy

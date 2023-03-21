@@ -14,14 +14,20 @@
         </div>
     </div>
 
-
     <div id="articles">
         <div class="row align-items-start">
             <% @articles.each do |article| %>
-                <div class="col-12 col-md-6 col-lg-6 mt-6 mb-6 ms-md-auto">
-                    <%= render article %>
-                </div>
+                <% if current_user.administrateur? %>
+                    <div class="col-12 col-md-6 col-lg-6 mt-6 mb-6">
+                        <%= render article %>
+                    </div>
+                <% elsif article.status === "publier" || current_user.utilisateur? %>
+                    <div class="col-12 col-md-6 col-lg-6 mt-6 mb-6">
+                        <%= render article %>
+                    </div>
+                <% end %>
             <% end %>
         </div>
     </div>
+
 </div>

@@ -1,9 +1,15 @@
 <h1>Game#play</h1>
 <p>Find me in app/views/game/play.html.erb</p>
 
-<%= content_tag(:div, "", id:"board", data: {
-    controller: "jeuxdechec",
-}, style: "width: 600px;") %>
+<p>
+    <button onClick="window.location.reload();" class="btn btn-sm btn-primary">Afficher la table</button>
+</p>
+
+<p>
+    <%= content_tag(:div, "", id:"board1", data: {
+        controller: "jeuxdechec",
+    }, style: "width: 600px;") %>
+</p>
 
 <button id="destroyBtn">Destroy Board</button>
 <button id="clearBoardBtn">Clear Board</button>

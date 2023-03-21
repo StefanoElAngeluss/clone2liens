@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
     t.string "titre"
     t.text "contenu"
     t.integer "views", default: 0
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
