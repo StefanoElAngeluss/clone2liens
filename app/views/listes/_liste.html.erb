@@ -1,0 +1,52 @@
+<div id="<%= dom_id liste %>">
+
+    <div class="card p-3 mt-2 mb-3" style="max-width: 550px;">
+        <h3 class="card-title">
+            <%= liste.titre %>
+        </h3>
+        <div class="card-text p-3">
+            <ul>
+                <li>
+                    <% if liste.contenu.present? %>
+                        <%= liste.contenu %>
+                    <% else %>
+                        <em>Aucun contenu</em>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row g-0">
+            <%= form_for(liste, remote: true) do |f| %>
+                <%= f.check_box :completed, as: :boolean, class: "mx-2" %>
+            <% end %>
+            <span style="font-weight:500;">Compléter ?</span>
+        </div>
+
+        <div class="card-footer">
+            card-footer
+        </div>
+    </div>
+
+</div>
+
+    <!--<div class="card mt-2 mb-3" style="max-width: 580px;">
+    <h2>
+        <%#= liste.titre %>
+    </h2>
+
+    <p class="mt-4">
+        <strong>Contenu:</strong>
+        <%#= liste.contenu %>
+    </p>
+
+        <div class="row g-0">
+        <span>
+            <%#= form_for(liste, remote: true) do |f| %>
+                <%#= f.check_box :completed, as: :boolean, class: "mx-2" %>
+            <%# end %>
+            </span>
+            <span style="font-weight:500;">Compléter ?</span>
+            <%#= liste.completed %>
+        </div>
+    </div>-->

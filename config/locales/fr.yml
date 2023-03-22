@@ -35,6 +35,11 @@ fr:
         name: Nom
     models:
       user: Utilisateur
+    errors:
+      models:
+        liste:
+          attributes:
+            user: required
 
   devise:
     confirmations:

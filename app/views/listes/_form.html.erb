@@ -1,0 +1,32 @@
+<%= form_with(model: liste) do |form| %>
+    <% if liste.errors.any? %>
+        <div style="color: red">
+        <h2><%= pluralize(liste.errors.count, "error") %> prohibited this liste from being saved:</h2>
+
+        <ul>
+            <% liste.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div>
+        <%= form.label :titre, style: "display: block" %>
+        <%= form.text_field :titre, class: "form-control mb-4" %>
+    </div>
+
+    <div>
+        <%= form.label :contenu, style: "display: block" %>
+        <%= form.rich_text_area :contenu, class: "todo-input mb-2" %>
+    </div>
+
+    <div>
+        <%= form.check_box :completed %>
+        <%= form.label "Complété ?", style: "display: inline" %>
+    </div>
+
+    <div>
+        <%= form.submit "Envoyer", class: "display: block mt-3" %>
+    </div>
+<% end %>

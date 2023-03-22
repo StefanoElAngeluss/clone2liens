@@ -9,6 +9,7 @@ class User < ApplicationRecord
     has_many :likes
     has_many :commentaires, dependent: :destroy
     has_many :notifications, as: :recipient, dependent: :destroy
+    has_many :listes, dependent: :destroy
 
     ########## FOLLOWERS FOLLOWINGS ##########
     # This access the Relationship object.

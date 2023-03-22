@@ -1,0 +1,16 @@
+<h1>Listes</h1>
+
+<hr />
+
+<%# <div class="mb-5"> %>
+    <%#= form_with(model: @liste) do |form| %>
+        <%#= form.select :liste_id, Liste.all.map{|c|[c.titre, c.id]}, prompt: "Selectionnez une tache" %>
+    <%# end %>
+<%# </div> %>
+
+<div id="listes">
+    <% @listes.each do |liste| %>
+        <%= render liste %>
+        <p><%= link_to "Show this liste", liste %></p>
+    <% end %>
+</div>

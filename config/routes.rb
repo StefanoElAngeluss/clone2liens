@@ -56,4 +56,6 @@ Rails.application.routes.draw do
     ########## JEUX D'ECHEC ##########
     get 'jeux_d_echec', to: 'game#play', as: 'jeux_d_echec'
 
+    ########## LISTE DE TACHES ##########
+    resources :listes
 end

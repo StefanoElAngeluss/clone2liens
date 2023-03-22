@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_21_205708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,6 +108,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
     t.index ["article_id"], name: "index_likes_on_article_id"
     t.index ["user_id", "article_id"], name: "index_likes_on_user_id_and_article_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "listes", force: :cascade do |t|
+    t.string "titre"
+    t.text "contenu"
+    t.boolean "completed"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_listes_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -215,6 +225,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_224012) do
   add_foreign_key "commentaires", "users"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
+  add_foreign_key "listes", "users"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "produits"
   add_foreign_key "taggables", "articles"
