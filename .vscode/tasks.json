@@ -1,24 +1,32 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "npm",
-            "script": "buildcss",
-            "group": "build",
-            "problemMatcher": [],
-            "label": "npm: buildcss",
-            "detail": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --load-path=node_modules"
-        },
-        {
-            "type": "npm",
-            "script": "build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [],
-            "label": "npm: build",
-            "detail": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js"
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "buildcss",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: buildcss",
+      "detail": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --load-path=node_modules"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "esbuild app/javascript/application.js --bundle --minify --analyze --outfile=app/assets/builds/application.js"
+    },
+    {
+      "type": "npm",
+      "script": "build-css",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "npm: build-css",
+      "detail": "sass app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style compressed --load-path=node_modules"
+    }
+  ]
 }

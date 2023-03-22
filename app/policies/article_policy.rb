@@ -7,7 +7,7 @@ class ArticlePolicy < ApplicationPolicy
     end
 
     def create?
-        user.administrateur? && !article.published
+        user.administrateur? || !article.published
     end
 
     def edit?

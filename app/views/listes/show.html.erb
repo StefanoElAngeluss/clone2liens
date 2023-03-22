@@ -1,0 +1,8 @@
+<%= render @liste %>
+
+<div>
+  <%= link_to "Edit this liste", edit_liste_path(@liste), class: "btn btn-warning" %> |
+  <%= link_to "Back to listes", listes_path, class: "btn btn-secondary" %>
+
+  <%= button_to "Destroy this liste", @liste, method: :delete, class: "btn btn-danger" %>
+</div>

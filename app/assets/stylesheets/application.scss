@@ -13,10 +13,13 @@
  *= require_tree .
  *= require_self
  */
-@import 'actiontext.css';
-@import 'app.css';
-@import 'canvas.css';
-@import 'dropzone.css';
-@import 'simple_calendar.css';
-@import 'trix.css';
-@import 'chessboard.css';
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
+@import "actiontext.css";
+@import "alerts.css";
+@import "app.css";
+@import "canvas.css";
+@import "chessboard.css";
+@import "dropzone.css";
+@import "simple_calendar.css";
+@import "stickynotes.css";
+@import "trix.css";
