@@ -8,6 +8,12 @@ GIT
       activesupport (>= 6.1.5)
       i18n
 
+GIT
+  remote: https://github.com/ddollar/foreman.git
+  revision: a5f9b78fa5cf657733c8a4cfd01b2c0c151b4fce
+  specs:
+    foreman (0.87.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -365,6 +371,7 @@ DEPENDENCIES
   debug
   devise
   followability
+  foreman!
   friendly_id (~> 5.4, >= 5.4.2)
   groupdate
   image_processing (~> 1.2)

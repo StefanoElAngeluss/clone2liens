@@ -31,7 +31,14 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
     private
+
+    def user_not_authorized
+        flash[:alert] = "Vous n'êtes pas autorisé(e) à afficher cette page!"
+        redirect_to  root_path
+    end
 
     def set_categories
 		@nav_categories = Category.where(display_in_nav: true).order(:nom)

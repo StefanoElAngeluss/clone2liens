@@ -23,16 +23,18 @@
                     <li><%= active_link_to "Ajouter une nouvelle tâche", new_liste_path, class:"dropdown-item mb-2" %></li>
                     <li><%= active_link_to "Ajouter un nouveau produit", new_produit_path, class:"dropdown-item mb-2" %></li>
                     <li><%= active_link_to "Ajouter un nouveau tag", new_tag_path, class:"dropdown-item mb-2"  %></li>
-                    <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
-                        Fonctionnalités Compte
-                    </div>
                     <% if current_user.administrateur? %>
+                        <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                            Fonctionnalités Compte
+                        </div>
                         <li><%= active_link_to "Administration", administration_path, class:"dropdown-item mb-2" %></li>
                     <% end %>
                 <% end %>
-                <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
-                Fonctionnalités Compte
-                </div>
+                <% if current_user.utilisateur? %>
+                    <div class="dropdown-header text-primary text-center text-uppercase mb-2" style="font-weight: bold;background-color: #C4D4F4;">
+                        Fonctionnalités Compte
+                    </div>
+                <% end %>
                 <li><%= active_link_to "Mes infos", profile_path(current_user), class:"dropdown-item mb-2" %></li>
                 <li><%= active_link_to 'Editer mon compte', edit_user_registration_path, class: "dropdown-item  mb-2" %></li>
                 <div class="dropdown-header text-danger text-center text-uppercase mb-2" style="font-weight: bold;background-color: #F7D7D7;">
