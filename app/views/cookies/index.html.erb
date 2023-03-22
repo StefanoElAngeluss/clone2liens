@@ -1,0 +1,54 @@
+<%= turbo_frame_tag :cookie_consent do %>
+    <div class="footer_cookie">
+        <div class="card">
+            <div class="card-body row">
+                <div class="col">
+                    <p class="text-center">Ce site utilise des cookies.</p>
+                </div>
+                <div class="col">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Lire plus
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ce site utilise des cookies. Vous pouvez consulter notre politique sur les cookies
+                    <%= link_to "Ici", cookie_policy_path, target: "_blank" %>.
+                </div>
+                <div class="modal-footer">
+                    <%= button_to "Rejetter",
+                        cookie_consent_path(consent: false),
+                        method: :post,
+                        onclick: "hideModal()",
+                        class:"btn btn-sm btn-secondary" %>
+                    <%= button_to "Accepter",
+                        cookie_consent_path(consent: true),
+                        method: :post,
+                        onclick: "hideModal()",
+                        class:"btn btn-sm btn-primary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function hideModal() {
+            let consentModal = document.getElementById('exampleModal');
+                if (consentModal) {
+                    let modalToHide = bootstrap.Modal.getInstance(consentModal)
+                    modalToHide.hide();
+                }
+            }
+    </script>
+<% end %>

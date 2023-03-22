@@ -21,6 +21,7 @@
 
         <article class="col-9 float-end align-items-center mx-5" style="margin-top:60px;">
             <%= yield %>
+            <%= turbo_frame_tag :cookie_consent, src: cookies_path if session[:cookie_consent].nil? %>
         </article>
 
 

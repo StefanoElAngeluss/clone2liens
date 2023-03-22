@@ -1,6 +1,9 @@
 <main style="position:fixed;margin:auto;z-index:-1;">
     <h1 class="peer">Pages#accueil</h1>
     <p class="peer">Find me in app/views/pages/accueil.html.erb</p>
+    <div style="z-index:0;">
+        Vous avez accepter les cookies: <%= session[:cookie_consent] %>
+    </div>
 
     <div class="canvas">
         <%= content_tag(:canvas, "", data: { controller: "threejs" }) %>
