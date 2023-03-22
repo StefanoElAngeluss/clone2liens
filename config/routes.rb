@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     get 'contact', to: 'pages#contact', as: 'contact'
     get 'a_propos', to: 'pages#about', as: 'about'
     get 'politique de confidentialité', to: 'pages#privacy', as: 'politique_de_confidentialite'
+    get 'cookies', to: 'cookies#index'
+    post 'cookies/consent', to: 'cookies#consent', as: 'cookie_consent'
+    post 'cookies/policy', to: 'cookies#policy',as: 'cookie_policy'
 
     ########## ARTICLES + COMMENTAIRES + CATEGORIES + TAGS ##########
     resources :articles do

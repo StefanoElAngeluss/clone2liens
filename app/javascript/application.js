@@ -9,3 +9,5 @@ import 'picmo'
 import '@picmo/popup-picker'
 import 'chess.js'
 import 'chessboardjs'
+
+window.bootstrap = bootstrap
