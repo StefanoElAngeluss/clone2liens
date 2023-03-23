@@ -2,19 +2,20 @@
 Errno::ENOENT: No such file or directory @ rb_sysopen - compressed
 
 Backtrace:
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:454:in `read'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:454:in `update_stylesheet'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin.rb:82:in `update_stylesheets'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:338:in `watch_or_update'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-D:/Labs/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
-D:/Labs/Ruby32-x64/bin/sass:32:in `load'
-D:/Labs/Ruby32-x64/bin/sass:32:in `<main>'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:454:in `read'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:454:in `update_stylesheet'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:294:in `watch'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/plugin.rb:109:in `method_missing'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:358:in `watch_or_update'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
+C:/Users/migno/.local/share/gem/ruby/3.2.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
+C:/Users/migno/AppData/Local/Microsoft/WindowsApps/sass:32:in `load'
+C:/Users/migno/AppData/Local/Microsoft/WindowsApps/sass:32:in `<main>'
 */
 body:before {
   white-space: pre;

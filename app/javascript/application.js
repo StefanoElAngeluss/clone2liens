@@ -7,7 +7,6 @@ import './controllers'
 import 'trix'
 import 'picmo'
 import '@picmo/popup-picker'
-import 'chess.js'
-import 'chessboardjs'
+import './channels'
 
 window.bootstrap = bootstrap

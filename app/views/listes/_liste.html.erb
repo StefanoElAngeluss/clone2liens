@@ -9,8 +9,8 @@
 
         <div class="d-flex">
             <%= form_for(liste, remote: true) do |f| %>
-                <%= f.check_box :completed, as: :boolean, class: "checkboxOne mx-2 mt-4" %>
-                <span style="font-weight:500;font-size:18px;">Compléter ?</span>
+                <%= f.check_box :completed, as: :boolean, class: "mx-2 mt-4 checkboxFour" %>
+                <span style="font-weight:500;font-size:20px;position: absolute;margin: 24px 10px;">Compléter ?</span>
                 <% if liste.completed? %>
                     <p class="mt-4 mb-2">
                         <%= f.submit "Annuler", disable_with: 'en cours d\'envoi...', class: "btn btn-secondary" %>

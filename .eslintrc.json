@@ -19,7 +19,8 @@
   "rules": {
     "no-console": 0,
     "class-methods-use-this": 0,
-    "semicolon": true,
+    "semicolon": 0,
+    "import": false,
     "indent": [
       "error",
       2 // 2 spaces
